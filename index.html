@@ -4,29 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>JDP Communications — Network Infrastructure Cabling Solutions</title>
-  <meta name="description" content="JDP Communications designs and installs high-performance network cabling systems that support voice, data, and video for businesses of all sizes — structured cabling, communications rooms, testing, and circuits." />
-  <meta name="theme-color" content="#0b1220" />
+  <meta name="description" content="JDP Communications designs and installs data centers, structured cabling, and high-performance networks that support voice, data, and video for businesses of all sizes." />
+  <meta name="theme-color" content="#0a1726" />
 
-  <!-- Progressive enhancement: flag JS before first paint so we can gate the start state -->
   <script>document.documentElement.classList.add('js');</script>
 
-  <!-- Favicon (inline, avoids 404) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b1220'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='18' fill='%234f7cff' text-anchor='middle'%3Ej%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a1726'/%3E%3Ctext x='16' y='23' font-family='Arial,sans-serif' font-style='italic' font-weight='700' font-size='17' fill='%231fa0ee' text-anchor='middle'%3Ej%3C/text%3E%3C/svg%3E" />
 
-  <!-- Tailwind (Play CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            ink:   "#0b1220",
-            "ink-2": "#0e1730",
-            night: "#070b14",
-            brand: { 100:"#dbe1f6", 300:"#9aa9e6", 400:"#5b6cc4", 500:"#3a4aa8", 600:"#2e3a8f", 700:"#243072", 800:"#1b2456" },
-            azure: "#4f7cff",
-            "azure-2": "#7aa6ff",
-            mist: "#f6f7fb",
+            ink:   "#0a1726",
+            "ink-2": "#0e2236",
+            night: "#060f1c",
+            brand: { 100:"#dbeaf7", 300:"#9bc0e0", 400:"#5a95c6", 500:"#2f73b0", 600:"#1b5a96", 700:"#154472", 800:"#0f3357" },
+            sky:   "#1fa0ee",
+            "sky-2": "#59b8f6",
+            mist:  "#f4f8fc",
           },
           fontFamily: {
             display: ['"Instrument Serif"', "ui-serif", "Georgia", "serif"],
@@ -39,132 +36,113 @@
     };
   </script>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600;1,700&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ===== Scroll-driven custom properties =====
-       Defaults = FINAL lit frame, so with no JS the hero shows the cable plugged in
-       and the building fully connected. html.js flips to the start state; JS drives it. */
-    :root { --p:1; --plug:1; --flow:1; --building:1; --plugX:0; }
-    html.js { --p:0; --plug:0; --flow:0; --building:0; --plugX:-150; }
+    /* Scroll-driven vars. Defaults = FINAL frame (plugged + electrified) so the page works with no JS. */
+    :root { --p:1; --plug:1; --energy:1; --spider:1; --zoom:1; --plugX:0; }
+    html.js { --p:0; --plug:0; --energy:0; --spider:0; --zoom:0; --plugX:-180; }
 
     html { scroll-behavior: smooth; scroll-padding-top: 92px; }
-    html, body { overflow-x: clip; }           /* kill horizontal scroll WITHOUT creating a sticky-breaking scroll container */
-    body { background: #0b1220; font-family: "Barlow", sans-serif; }
-    ::selection { background: #4f7cff; color: #fff; }
+    html, body { overflow-x: clip; }
+    body { background: #0a1726; font-family: "Barlow", sans-serif; }
+    ::selection { background: #1fa0ee; color: #fff; }
 
     .font-display { font-family: "Instrument Serif", Georgia, serif; }
     .eyebrow { font-family: "Space Mono", ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.72rem; }
+    :where(a,button,input,textarea,summary,[tabindex]):focus-visible { outline: 2px solid #59b8f6; outline-offset: 3px; border-radius: 4px; }
 
-    :where(a, button, input, textarea, summary, [tabindex]):focus-visible {
-      outline: 2px solid #7aa6ff; outline-offset: 3px; border-radius: 4px;
-    }
-
-    /* ===== Pinned hero scene ===== */
+    /* ---------- Pinned hero ---------- */
     .hero-bg { position: absolute; inset: 0;
       background:
-        radial-gradient(58% 48% at 50% 40%, rgba(79,124,255,.20), transparent 70%),
-        radial-gradient(42% 42% at 82% 88%, rgba(79,124,255,.10), transparent 72%);
+        radial-gradient(50% 46% at 62% 52%, rgba(31,160,238,.20), transparent 70%),
+        radial-gradient(38% 38% at 30% 30%, rgba(31,160,238,.08), transparent 72%);
     }
     .hero-bg::after { content: ""; position: absolute; inset: 0;
-      background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
       background-size: 26px 26px;
-      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
-              mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
+              mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
     }
     .hero-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
     .hero-scrim { position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(to right, rgba(11,18,32,.88) 0%, rgba(11,18,32,.45) 34%, rgba(11,18,32,0) 60%); }
+      background: linear-gradient(to right, rgba(10,23,38,.90) 0%, rgba(10,23,38,.45) 32%, rgba(10,23,38,0) 58%); }
 
-    #cablePlug { transform: translateX(calc(var(--plugX) * 1px)); will-change: transform; }
+    /* camera zoom into the connection point */
+    #hero-scene { transform-box: view-box; transform-origin: 786px 410px;
+      transform: scale(calc(1 + var(--zoom) * 0.18)); }
+    /* connector slides into the port */
+    #connector { transform: translateX(calc(var(--plugX) * 1px)); will-change: transform; }
 
-    .cable-jacket { fill: none; stroke: #2b3b66; stroke-width: 15; stroke-linecap: round; }
-    .cable-core {
-      fill: none; stroke: #7aa6ff; stroke-width: 5; stroke-linecap: round;
-      stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--flow));
-      filter: drop-shadow(0 0 6px rgba(122,166,255,.95)); will-change: stroke-dashoffset;
-    }
-    .contacts { stroke: #ffd479; stroke-width: 2.4; opacity: calc(.35 + clamp(0, var(--flow), 1) * .65); }
+    .gold-lit { fill: #fff6cf; opacity: calc(clamp(0, var(--energy), 1) * .8); }
+    .port-led { opacity: clamp(0, (var(--energy) - var(--d,0)) * 8, 1); filter: drop-shadow(0 0 3px currentColor); }
+    .seam { fill: #e6f5ff; opacity: clamp(0, var(--energy) * 1.2, 1);
+            filter: drop-shadow(0 0 16px rgba(47,176,251,.95)); }
+    .seam-halo { fill: rgba(47,176,251,.5); opacity: calc(var(--energy) * .9);
+            transform: scale(calc(.4 + var(--energy) * .9)); transform-box: fill-box; transform-origin: center; }
 
-    .led { fill: #4f7cff; opacity: clamp(0, (var(--flow) - var(--d, 0)) * 6, 1);
-           filter: drop-shadow(0 0 3px rgba(79,124,255,.95)); }
-    .sw-lit { fill: #4f7cff; opacity: calc(clamp(0, (var(--flow) - var(--d, 0)) * 6, 1) * 0.16); }
+    .spark { fill: none; stroke-linecap: round; stroke-linejoin: round;
+      --sp: clamp(0, (var(--spider) - var(--d,0)) / .5, 1);
+      stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--sp)); will-change: stroke-dashoffset; }
+    .spark.glow { stroke: #2fb0fb; stroke-width: 6; opacity: .85; filter: drop-shadow(0 0 6px rgba(47,176,251,.9)); }
+    .spark.core { stroke: #eaf6ff; stroke-width: 2; filter: drop-shadow(0 0 3px rgba(190,230,255,.95)); }
 
-    .dist-base { fill: none; stroke: #21305c; stroke-width: 3.5; stroke-linecap: round; }
-    .dist {
-      fill: none; stroke: #4f7cff; stroke-width: 3.5; stroke-linecap: round;
-      --f: clamp(0, (var(--building) - var(--d, 0)) / .5, 1);
-      stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--f));
-      filter: drop-shadow(0 0 5px rgba(79,124,255,.85)); will-change: stroke-dashoffset;
-    }
-    .node { fill: #9bc1ff; opacity: clamp(0, (var(--building) - var(--d, 0) - .1) * 6, 1);
-            filter: drop-shadow(0 0 5px rgba(155,193,255,.95)); }
-    .out-node { fill: #9bc1ff; opacity: clamp(0, (var(--flow) - .55) * 5, 1);
-                filter: drop-shadow(0 0 6px rgba(155,193,255,.9)); }
-    .room { fill: #4f7cff; fill-opacity: clamp(0, (var(--building) - var(--d, 0) - .22) * 4, .82); }
-
-    .seat-flash { fill: #cfe0ff; --seat: clamp(0, (var(--plug) - .84) / .16, 1);
-                  opacity: calc(var(--seat) * (1 - var(--seat)) * 4); }
-    .seat-ring  { fill: none; stroke: #9bc1ff; stroke-width: 3; --seat: clamp(0, (var(--plug) - .84) / .16, 1);
-                  opacity: calc(var(--seat) * (1 - var(--seat)) * 4);
-                  transform: scale(calc(.55 + var(--seat))); transform-box: fill-box; transform-origin: center; }
-
-    .hero-headline { opacity: calc(1 - var(--building) * .10); }
+    .hero-headline { opacity: calc(1 - var(--spider) * .08); }
     .scroll-hint  { opacity: clamp(0, 1 - var(--p) * 7, 1); }
     .prog-fill    { width: calc(var(--p) * 100%); }
     .cap { transition: opacity .15s linear; }
 
-    /* Entrance reveals (JS only) */
     .js .reveal { opacity: 0; transform: translateY(16px); filter: blur(8px); }
     .js .reveal.in { opacity: 1; transform: none; filter: none;
       transition: opacity .7s ease, transform .7s ease, filter .7s ease; }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      html.js { --p:1; --plug:1; --flow:1; --building:1; --plugX:0; }  /* show final frame, no scrub */
-      .js .reveal { opacity: 1; transform: none; filter: none; }       /* never trap content hidden */
-      #cablePlug, .cable-core, .dist { will-change: auto; }
+      html.js { --p:1; --plug:1; --energy:1; --spider:1; --zoom:1; --plugX:0; }
+      .js .reveal { opacity: 1; transform: none; filter: none; }
+      #connector, .spark { will-change: auto; }
     }
   </style>
 </head>
 
 <body class="bg-ink text-white antialiased">
 
+  <!-- Reusable jdp logo (recreated as SVG; swap for the official file anytime) -->
+  <svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="jdpLogo" viewBox="0 0 236 152">
+        <path d="M34 64 A104 42 -8 0 1 196 44" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+        <path d="M204 78 A104 42 -8 0 1 40 96" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+        <text x="118" y="95" text-anchor="middle" font-family="Barlow, sans-serif" font-weight="700" font-style="italic" font-size="92" fill="#1fa0ee">jdp</text>
+        <text x="119" y="142" text-anchor="middle" font-family="Barlow, sans-serif" font-weight="700" font-size="27" letter-spacing="0.5" fill="#ffffff">Communications</text>
+      </symbol>
+    </defs>
+  </svg>
+
   <!-- ============================= NAV ============================= -->
   <header id="top" class="fixed inset-x-0 top-0 z-50 px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4">
     <div class="mx-auto max-w-content">
-      <nav class="flex items-center justify-between rounded-full border border-white/10 bg-ink/70 backdrop-blur-md px-3 sm:px-4 py-2.5 shadow-lg shadow-black/20">
-        <!-- Logo -->
-        <a href="#top" class="flex items-center gap-2.5 pl-1" aria-label="JDP Communications home">
-          <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand-600">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="9" width="13" height="6" rx="1.5"/><path d="M16 11h3l2 1-2 1h-3"/><path d="M6 12h0M9 12h0"/>
-            </svg>
-          </span>
-          <span class="leading-none">
-            <span class="font-display italic text-2xl text-white">jdp</span>
-            <span class="eyebrow ml-1 text-[9px] text-white/60 align-middle">Communications</span>
-          </span>
+      <nav class="flex items-center justify-between rounded-full border border-white/10 bg-ink/70 backdrop-blur-md px-3 sm:px-5 py-2.5 shadow-lg shadow-black/30">
+        <a href="#top" class="flex items-center" aria-label="JDP Communications home">
+          <svg class="h-9 w-auto" viewBox="0 0 236 152" role="img" aria-label="jdp Communications"><use href="#jdpLogo"/></svg>
         </a>
 
-        <!-- Desktop links -->
         <div class="hidden md:flex items-center gap-1 text-sm text-white/85">
           <a href="#top" class="rounded-full px-3 py-2 hover:text-white hover:bg-white/5 transition">Home</a>
           <a href="#services" class="rounded-full px-3 py-2 hover:text-white hover:bg-white/5 transition">Services</a>
+          <a href="#data-centers" class="rounded-full px-3 py-2 hover:text-white hover:bg-white/5 transition">Data Centers</a>
           <a href="#about" class="rounded-full px-3 py-2 hover:text-white hover:bg-white/5 transition">About Us</a>
           <a href="#contact" class="rounded-full px-3 py-2 hover:text-white hover:bg-white/5 transition">Contact Us</a>
         </div>
 
-        <!-- Right -->
         <div class="flex items-center gap-2">
           <a href="tel:+19493342852" class="hidden sm:inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-white/85 hover:text-white transition">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            949-334-2852
+            949.334.2852
           </a>
-          <a href="#contact" class="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink hover:bg-azure-2 hover:text-ink transition">
+          <a href="#contact" class="inline-flex items-center gap-1.5 rounded-full bg-sky px-4 py-2 text-sm font-semibold text-white hover:bg-brand-600 transition">
             Request a Quote
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
           </a>
@@ -174,13 +152,13 @@
         </div>
       </nav>
 
-      <!-- Mobile panel -->
       <div id="mobilePanel" hidden class="md:hidden mt-2 rounded-2xl border border-white/10 bg-ink/95 backdrop-blur-md p-2 text-white">
         <a href="#top" class="block rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
         <a href="#services" class="block rounded-xl px-4 py-3 hover:bg-white/5">Services</a>
+        <a href="#data-centers" class="block rounded-xl px-4 py-3 hover:bg-white/5">Data Centers</a>
         <a href="#about" class="block rounded-xl px-4 py-3 hover:bg-white/5">About Us</a>
         <a href="#contact" class="block rounded-xl px-4 py-3 hover:bg-white/5">Contact Us</a>
-        <a href="tel:+19493342852" class="block rounded-xl px-4 py-3 text-azure-2">Call 949-334-2852</a>
+        <a href="tel:+19493342852" class="block rounded-xl px-4 py-3 text-sky-2">Call 949.334.2852</a>
       </div>
     </div>
   </header>
@@ -188,151 +166,129 @@
   <main>
     <!-- ===================== PINNED HERO ===================== -->
     <section id="hero" class="relative overflow-clip bg-ink text-white">
-      <!-- Pinned stage -->
       <div class="sticky top-0 h-[100svh] w-full overflow-hidden">
         <div class="hero-bg" aria-hidden="true"></div>
 
-        <!-- The scene -->
-        <svg class="hero-svg" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMax meet"
-             role="img" aria-label="A Cat6 cable plugs into a network switch in a rack, energizes, and distributes connectivity through the floors of a building.">
-          <title>From the rack to every room</title>
-          <desc>An RJ45 connector slides into a switch port, current flows through the cable and lights the switches, then branches out to every floor of a building.</desc>
+        <svg class="hero-svg" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid meet"
+             role="img" aria-label="A close-up Cat6 RJ45 connector plugs into a network switch and electricity spiders outward from the connection.">
+          <title>RJ45 plugging into a switch, energizing</title>
+          <desc>An up-close RJ45 connector slides into a switch port; on contact, blue electricity flows and branches outward.</desc>
 
           <defs>
-            <!-- Reusable switch unit (238 x 64): body, port row, LEDs, lit overlay -->
-            <g id="sw">
-              <rect x="0" y="0" width="238" height="64" rx="6" fill="#101a35" stroke="#283a66" stroke-width="1.5"/>
-              <rect x="0" y="0" width="238" height="14" rx="6" fill="#0c1428"/>
-              <!-- status LEDs -->
-              <g class="leds">
-                <circle class="led" cx="19"  cy="9" r="2.6"/><circle class="led" cx="37"  cy="9" r="2.6"/>
-                <circle class="led" cx="55"  cy="9" r="2.6"/><circle class="led" cx="73"  cy="9" r="2.6"/>
-                <circle class="led" cx="91"  cy="9" r="2.6"/><circle class="led" cx="109" cy="9" r="2.6"/>
-                <circle class="led" cx="127" cy="9" r="2.6"/><circle class="led" cx="145" cy="9" r="2.6"/>
-                <circle class="led" cx="163" cy="9" r="2.6"/><circle class="led" cx="181" cy="9" r="2.6"/>
-                <circle class="led" cx="199" cy="9" r="2.6"/><circle class="led" cx="217" cy="9" r="2.6"/>
-              </g>
-              <!-- ports -->
-              <g fill="#0a1226" stroke="#33457a" stroke-width="1">
-                <rect x="12"  y="26" width="14" height="22" rx="2"/><rect x="30"  y="26" width="14" height="22" rx="2"/>
-                <rect x="48"  y="26" width="14" height="22" rx="2"/><rect x="66"  y="26" width="14" height="22" rx="2"/>
-                <rect x="84"  y="26" width="14" height="22" rx="2"/><rect x="102" y="26" width="14" height="22" rx="2"/>
-                <rect x="120" y="26" width="14" height="22" rx="2"/><rect x="138" y="26" width="14" height="22" rx="2"/>
-                <rect x="156" y="26" width="14" height="22" rx="2"/><rect x="174" y="26" width="14" height="22" rx="2"/>
-                <rect x="192" y="26" width="14" height="22" rx="2"/><rect x="210" y="26" width="14" height="22" rx="2"/>
-              </g>
-              <rect class="sw-lit" x="10" y="24" width="220" height="26" rx="3"/>
-            </g>
+            <linearGradient id="boot" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#2b6bb0"/><stop offset="1" stop-color="#143a66"/>
+            </linearGradient>
+            <linearGradient id="housing" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#cfe6fb"/><stop offset=".5" stop-color="#9cc6ee"/><stop offset="1" stop-color="#6fa6d8"/>
+            </linearGradient>
+            <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ffe9a6"/><stop offset=".5" stop-color="#e8b54e"/><stop offset="1" stop-color="#b9842b"/>
+            </linearGradient>
+            <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#1a2332"/><stop offset=".5" stop-color="#243042"/><stop offset="1" stop-color="#161f2c"/>
+            </linearGradient>
+            <radialGradient id="burst" cx=".5" cy=".5" r=".5">
+              <stop offset="0" stop-color="#eaf7ff"/><stop offset=".4" stop-color="#56b7f6"/><stop offset="1" stop-color="rgba(47,176,251,0)"/>
+            </radialGradient>
           </defs>
 
-          <!-- ===== Distribution lines (drawn first, behind rack/building) ===== -->
-          <g>
-            <path class="dist-base" d="M712 416 C 770 380 800 332 832 304"/>
-            <path class="dist-base" d="M712 416 C 772 412 802 406 832 404"/>
-            <path class="dist-base" d="M712 416 C 772 452 802 498 832 504"/>
-            <path class="dist-base" d="M712 416 C 772 510 800 588 832 606"/>
-            <path class="dist" pathLength="1" style="--d:0"    d="M712 416 C 770 380 800 332 832 304"/>
-            <path class="dist" pathLength="1" style="--d:.14"  d="M712 416 C 772 412 802 406 832 404"/>
-            <path class="dist" pathLength="1" style="--d:.28"  d="M712 416 C 772 452 802 498 832 504"/>
-            <path class="dist" pathLength="1" style="--d:.42"  d="M712 416 C 772 510 800 588 832 606"/>
-          </g>
-
-          <!-- ===== Building cross-section ===== -->
-          <g>
-            <rect x="824" y="250" width="326" height="410" rx="8" fill="#0d1530" stroke="#283a66" stroke-width="2"/>
-            <line x1="824" y1="352" x2="1150" y2="352" stroke="#1b274d" stroke-width="2"/>
-            <line x1="824" y1="454" x2="1150" y2="454" stroke="#1b274d" stroke-width="2"/>
-            <line x1="824" y1="556" x2="1150" y2="556" stroke="#1b274d" stroke-width="2"/>
-            <!-- floor entry nodes -->
-            <circle class="node" style="--d:0"   cx="832" cy="304" r="5"/>
-            <circle class="node" style="--d:.14" cx="832" cy="404" r="5"/>
-            <circle class="node" style="--d:.28" cx="832" cy="504" r="5"/>
-            <circle class="node" style="--d:.42" cx="832" cy="606" r="5"/>
-            <!-- windows / rooms that light as connectivity arrives -->
-            <g class="floor">
-              <rect class="room" style="--d:0" x="876" y="286" width="56" height="34" rx="3"/>
-              <rect class="room" style="--d:0" x="956" y="286" width="56" height="34" rx="3"/>
-              <rect class="room" style="--d:0" x="1036" y="286" width="56" height="34" rx="3"/>
-            </g>
-            <g class="floor">
-              <rect class="room" style="--d:.14" x="876" y="388" width="56" height="34" rx="3"/>
-              <rect class="room" style="--d:.14" x="956" y="388" width="56" height="34" rx="3"/>
-              <rect class="room" style="--d:.14" x="1036" y="388" width="56" height="34" rx="3"/>
-            </g>
-            <g class="floor">
-              <rect class="room" style="--d:.28" x="876" y="490" width="56" height="34" rx="3"/>
-              <rect class="room" style="--d:.28" x="956" y="490" width="56" height="34" rx="3"/>
-              <rect class="room" style="--d:.28" x="1036" y="490" width="56" height="34" rx="3"/>
-            </g>
-            <g class="floor">
-              <rect class="room" style="--d:.42" x="876" y="592" width="56" height="34" rx="3"/>
-              <rect class="room" style="--d:.42" x="956" y="592" width="56" height="34" rx="3"/>
-              <rect class="room" style="--d:.42" x="1036" y="592" width="56" height="34" rx="3"/>
-            </g>
-            <!-- door -->
-            <rect x="978" y="618" width="40" height="42" rx="2" fill="#0a1226" stroke="#283a66" stroke-width="1.5"/>
-          </g>
-
-          <!-- ===== Rack ===== -->
-          <g>
-            <rect x="430" y="250" width="282" height="410" rx="10" fill="#0c142c" stroke="#283a66" stroke-width="2"/>
-            <rect x="436" y="256" width="8" height="398" rx="3" fill="#16224a"/>
-            <rect x="698" y="256" width="8" height="398" rx="3" fill="#16224a"/>
-            <!-- switches -->
-            <use href="#sw" x="452" y="268" style="--d:0"/>
-            <use href="#sw" x="452" y="346" style="--d:.10"/>
-            <use href="#sw" x="452" y="424" style="--d:.20"/>
-            <use href="#sw" x="452" y="502" style="--d:.30"/>
-            <!-- patch panel -->
-            <rect x="452" y="580" width="238" height="64" rx="6" fill="#0e1733" stroke="#283a66" stroke-width="1.5"/>
-            <g stroke="#33457a" stroke-width="1" fill="#0a1226">
-              <rect x="466" y="600" width="20" height="24" rx="2"/><rect x="494" y="600" width="20" height="24" rx="2"/>
-              <rect x="522" y="600" width="20" height="24" rx="2"/><rect x="550" y="600" width="20" height="24" rx="2"/>
-              <rect x="578" y="600" width="20" height="24" rx="2"/><rect x="606" y="600" width="20" height="24" rx="2"/>
-              <rect x="634" y="600" width="20" height="24" rx="2"/><rect x="662" y="600" width="20" height="24" rx="2"/>
-            </g>
-            <!-- rack output jack (feeds the building) -->
-            <circle class="out-node" cx="712" cy="416" r="5.5"/>
-          </g>
-
-          <!-- ===== Cable + RJ45 connector (slides in via --plugX) ===== -->
-          <g id="cablePlug">
-            <path class="cable-jacket" d="M -80 742 C 150 690 250 470 318 396 C 352 358 372 332 398 320"/>
-            <path class="cable-core"   pathLength="1" d="M -80 742 C 150 690 250 470 318 396 C 352 358 372 332 398 320"/>
-            <!-- connector body, seated tip at x=464 -->
-            <g>
-              <rect x="396" y="290" width="70" height="34" rx="4" fill="#1b2a54" stroke="#3a4d86" stroke-width="1.5"/>
-              <rect x="408" y="282" width="34" height="10" rx="2" fill="#1b2a54" stroke="#3a4d86" stroke-width="1.5"/>
-              <g class="contacts" stroke-linecap="round">
-                <line x1="450" y1="296" x2="450" y2="318"/><line x1="455" y1="296" x2="455" y2="318"/>
-                <line x1="460" y1="296" x2="460" y2="318"/>
+          <g id="hero-scene">
+            <!-- ===== Switch faceplate (right) ===== -->
+            <g id="faceplate">
+              <rect x="786" y="250" width="414" height="320" rx="10" fill="url(#metal)" stroke="#0c1420" stroke-width="2"/>
+              <rect x="800" y="250" width="3" height="320" fill="#2f3e54" opacity=".6"/>
+              <rect x="1180" y="250" width="3" height="320" fill="#0b121d" opacity=".7"/>
+              <circle cx="806" cy="266" r="4" fill="#0c1420"/><circle cx="1184" cy="266" r="4" fill="#0c1420"/>
+              <circle cx="806" cy="554" r="4" fill="#0c1420"/><circle cx="1184" cy="554" r="4" fill="#0c1420"/>
+              <!-- context ports (top & bottom) -->
+              <g fill="#0a111c" stroke="#33455f" stroke-width="2">
+                <path d="M792 286 h78 v40 h-78 z M806 326 h50 v12 h-50 z"/>
+                <path d="M792 486 h78 v40 h-78 z M806 526 h50 v12 h-50 z"/>
               </g>
+              <!-- target port (the connector seats here) -->
+              <g>
+                <rect x="788" y="372" width="86" height="78" rx="4" fill="#070d16" stroke="#3b5070" stroke-width="2"/>
+                <rect x="804" y="450" width="54" height="12" rx="2" fill="#070d16" stroke="#3b5070" stroke-width="2"/>
+                <rect x="792" y="376" width="80" height="5" rx="2" fill="#56708f" opacity=".7"/>
+              </g>
+              <!-- link LEDs over target port -->
+              <rect class="port-led" style="--d:0"    x="792" y="360" width="12" height="7" rx="1.5" fill="#39d98a" color="#39d98a"/>
+              <rect class="port-led" style="--d:.12" x="858" y="360" width="12" height="7" rx="1.5" fill="#ffc24b" color="#ffc24b"/>
             </g>
-          </g>
 
-          <!-- ===== Seat flash + click ring at the port ===== -->
-          <g>
-            <rect class="seat-flash" x="446" y="286" width="34" height="32" rx="4"/>
-            <circle class="seat-ring" cx="464" cy="304" r="20"/>
+            <!-- ===== RJ45 connector (slides in via --plugX) ===== -->
+            <g id="connector">
+              <!-- cable tail + boot -->
+              <path d="M150 470 C 260 452 320 446 392 440" fill="none" stroke="#1b4f86" stroke-width="40" stroke-linecap="round"/>
+              <path d="M150 470 C 260 452 320 446 392 440" fill="none" stroke="#2b6bb0" stroke-width="22" stroke-linecap="round" opacity=".7"/>
+              <rect x="388" y="356" width="120" height="120" rx="26" fill="url(#boot)" stroke="#0e2c4e" stroke-width="2"/>
+              <g stroke="#15406e" stroke-width="3" opacity=".7"><path d="M420 360v112"/><path d="M450 360v112"/><path d="M480 360v112"/></g>
+              <!-- housing -->
+              <rect x="496" y="344" width="288" height="144" rx="14" fill="url(#housing)" stroke="#e8f3ff" stroke-width="2"/>
+              <!-- latch clip -->
+              <path d="M566 344 l14 -22 h44 l14 22 z" fill="#9cc6ee" stroke="#e8f3ff" stroke-width="2"/>
+              <!-- 8 colored conductors -->
+              <g>
+                <rect x="512" y="356" width="210" height="12" rx="3" fill="#f4d2a3"/>
+                <rect x="512" y="372" width="210" height="12" rx="3" fill="#ef9d2a"/>
+                <rect x="512" y="388" width="210" height="12" rx="3" fill="#bfe3cb"/>
+                <rect x="512" y="404" width="210" height="12" rx="3" fill="#2f7fe0"/>
+                <rect x="512" y="420" width="210" height="12" rx="3" fill="#bcd3f6"/>
+                <rect x="512" y="436" width="210" height="12" rx="3" fill="#22a35a"/>
+                <rect x="512" y="452" width="210" height="12" rx="3" fill="#d8c2a6"/>
+                <rect x="512" y="468" width="210" height="12" rx="3" fill="#7a4f25"/>
+              </g>
+              <!-- gloss -->
+              <rect x="508" y="352" width="268" height="26" rx="10" fill="#ffffff" opacity=".22"/>
+              <!-- gold contacts at the tip -->
+              <g>
+                <rect x="726" y="356" width="9" height="120" rx="2" fill="url(#gold)"/>
+                <rect x="740" y="356" width="9" height="120" rx="2" fill="url(#gold)"/>
+                <rect x="754" y="356" width="9" height="120" rx="2" fill="url(#gold)"/>
+                <rect x="768" y="356" width="9" height="120" rx="2" fill="url(#gold)"/>
+              </g>
+              <rect class="gold-lit" x="724" y="356" width="60" height="120" rx="3"/>
+            </g>
+
+            <!-- ===== Electricity: seam burst + spider bolts ===== -->
+            <circle class="seam-halo" cx="790" cy="410" r="60" fill="url(#burst)"/>
+            <g class="sparks">
+              <path class="spark glow" pathLength="1" style="--d:0"   d="M790 410 L754 380 L770 352 L726 330 L742 300 L700 286 L654 300 M726 330 L692 308"/>
+              <path class="spark core" pathLength="1" style="--d:0"   d="M790 410 L754 380 L770 352 L726 330 L742 300 L700 286 L654 300 M726 330 L692 308"/>
+              <path class="spark glow" pathLength="1" style="--d:.05" d="M790 410 L786 366 L808 340 L788 300 L804 262 L776 232 L788 196 M788 300 L758 276"/>
+              <path class="spark core" pathLength="1" style="--d:.05" d="M790 410 L786 366 L808 340 L788 300 L804 262 L776 232 L788 196 M788 300 L758 276"/>
+              <path class="spark glow" pathLength="1" style="--d:.1"  d="M790 410 L830 388 L853 360 L899 348 L917 312 L963 300 L995 268 M899 348 L927 322"/>
+              <path class="spark core" pathLength="1" style="--d:.1"  d="M790 410 L830 388 L853 360 L899 348 L917 312 L963 300 L995 268 M899 348 L927 322"/>
+              <path class="spark glow" pathLength="1" style="--d:.04" d="M790 410 L838 404 L868 420 L918 410 L956 426 L1008 416 L1060 430 L1120 420 M1008 416 L1044 398"/>
+              <path class="spark core" pathLength="1" style="--d:.04" d="M790 410 L838 404 L868 420 L918 410 L956 426 L1008 416 L1060 430 L1120 420 M1008 416 L1044 398"/>
+              <path class="spark glow" pathLength="1" style="--d:.12" d="M790 410 L836 426 L864 452 L916 452 L952 478 L1004 476 L1056 500 M916 452 L944 484"/>
+              <path class="spark core" pathLength="1" style="--d:.12" d="M790 410 L836 426 L864 452 L916 452 L952 478 L1004 476 L1056 500 M916 452 L944 484"/>
+              <path class="spark glow" pathLength="1" style="--d:.16" d="M790 410 L826 446 L816 480 L860 500 L848 536 L896 556 L934 596 M860 500 L892 528"/>
+              <path class="spark core" pathLength="1" style="--d:.16" d="M790 410 L826 446 L816 480 L860 500 L848 536 L896 556 L934 596 M860 500 L892 528"/>
+              <path class="spark glow" pathLength="1" style="--d:.08" d="M790 410 L786 452 L764 480 L786 520 L768 556 L798 586 L784 628 M786 520 L814 548"/>
+              <path class="spark core" pathLength="1" style="--d:.08" d="M790 410 L786 452 L764 480 L786 520 L768 556 L798 586 L784 628 M786 520 L814 548"/>
+              <path class="spark glow" pathLength="1" style="--d:.18" d="M790 410 L750 440 L726 468 L682 472 L654 506 L610 516 L570 552 M682 472 L650 500"/>
+              <path class="spark core" pathLength="1" style="--d:.18" d="M790 410 L750 440 L726 468 L682 472 L654 506 L610 516 L570 552 M682 472 L650 500"/>
+            </g>
+            <circle class="seam" cx="790" cy="410" r="9"/>
           </g>
         </svg>
 
-        <!-- Left scrim keeps the headline crisp over the scene -->
         <div class="hero-scrim" aria-hidden="true"></div>
 
         <!-- ===== Copy overlay ===== -->
         <div class="pointer-events-none absolute inset-0">
-          <div class="mx-auto flex h-full max-w-content flex-col px-5 sm:px-8 pt-[16svh] sm:pt-[18svh]">
+          <div class="mx-auto flex h-full max-w-content flex-col px-5 sm:px-8 pt-[15svh] sm:pt-[17svh]">
             <div class="max-w-xl">
-              <p class="eyebrow text-azure-2 reveal">Structured Cabling &middot; Network Infrastructure</p>
+              <p class="eyebrow text-sky-2 reveal">Data Centers &middot; Structured Cabling &middot; Low Voltage</p>
               <h1 class="hero-headline font-display text-[2.85rem] leading-[0.95] sm:text-6xl lg:text-7xl mt-4 reveal">
                 Reliable networks start with the right cabling partner.
               </h1>
               <p class="mt-5 max-w-md text-base sm:text-lg text-white/75 font-light reveal">
-                High-performance network cabling for voice, data, and video — for businesses of all sizes.
+                High-performance cabling for voice, data, and video. Data centers, server rooms, and businesses of all sizes.
               </p>
               <div class="pointer-events-auto mt-7 flex flex-wrap items-center gap-3 reveal">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-azure px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition">
+                <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition">
                   Request a Quote
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
                 </a>
@@ -343,35 +299,31 @@
             </div>
           </div>
 
-          <!-- phase caption -->
           <div class="absolute bottom-16 inset-x-0">
             <div class="mx-auto max-w-content px-5 sm:px-8">
               <div class="eyebrow text-white/60 h-4 relative">
-                <span class="cap absolute" style="opacity: clamp(0, (0.40 - var(--p)) / 0.10, 1)">01 — Plug in</span>
-                <span class="cap absolute" style="opacity: min(clamp(0,(var(--p) - 0.32)/0.08,1), clamp(0,(0.76 - var(--p))/0.08,1))">02 — Energize</span>
-                <span class="cap absolute" style="opacity: clamp(0, (var(--p) - 0.62)/0.08, 1)">03 — Distribute</span>
+                <span class="cap absolute" style="opacity: clamp(0, (0.46 - var(--p)) / 0.10, 1)">01 Plug in</span>
+                <span class="cap absolute" style="opacity: min(clamp(0,(var(--p) - 0.40)/0.06,1), clamp(0,(0.74 - var(--p))/0.08,1))">02 Energize</span>
+                <span class="cap absolute" style="opacity: clamp(0, (var(--p) - 0.60)/0.08, 1)">03 Spider out</span>
               </div>
             </div>
           </div>
 
-          <!-- progress rail -->
           <div class="absolute bottom-8 inset-x-0">
             <div class="mx-auto max-w-content px-5 sm:px-8">
               <div class="h-px w-full bg-white/12">
-                <div class="prog-fill h-px bg-azure-2" style="box-shadow:0 0 8px rgba(122,166,255,.9)"></div>
+                <div class="prog-fill h-px bg-sky-2" style="box-shadow:0 0 8px rgba(89,184,246,.9)"></div>
               </div>
             </div>
           </div>
 
-          <!-- scroll hint -->
           <div class="scroll-hint absolute bottom-3 left-1/2 -translate-x-1/2 text-white/55">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
           </div>
         </div>
       </div>
 
-      <!-- Scroll runway: its height is how long the scene stays pinned -->
-      <div class="h-[300vh] max-md:h-[180vh]" aria-hidden="true"></div>
+      <div class="h-[300vh] max-md:h-[185vh]" aria-hidden="true"></div>
     </section>
 
     <!-- ===================== SERVICES ===================== -->
@@ -388,23 +340,20 @@
         </div>
 
         <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <!-- Card 1 -->
           <article class="reveal flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink/5 shadow-sm">
             <div class="flex items-center gap-3 bg-brand-600 px-6 py-5 text-white">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="7" cy="7" r=".5"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
               <h3 class="font-semibold text-lg leading-tight">Structured Network Cabling</h3>
             </div>
             <p class="px-6 py-5 text-ink/70">Design and installation of high-speed network cabling systems to support voice, video, and data applications with reliable, scalable performance.</p>
           </article>
-          <!-- Card 2 -->
           <article class="reveal flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink/5 shadow-sm">
             <div class="flex items-center gap-3 bg-brand-600 px-6 py-5 text-white">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="7" rx="1"/><rect x="4" y="14" width="16" height="7" rx="1"/><path d="M8 6.5h0M8 17.5h0"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="7" rx="1"/><rect x="4" y="14" width="16" height="7" rx="1"/><path d="M8 6.5h.01M8 17.5h.01"/></svg>
               <h3 class="font-semibold text-lg leading-tight">Communications Room</h3>
             </div>
             <p class="px-6 py-5 text-ink/70">Installation of communication cabinets, equipment racks, backup power systems, and distributed power solutions to support secure, organized, and reliable network infrastructure.</p>
           </article>
-          <!-- Card 3 -->
           <article class="reveal flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink/5 shadow-sm">
             <div class="flex items-center gap-3 bg-brand-600 px-6 py-5 text-white">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 1 5.4-5.4z"/></svg>
@@ -412,7 +361,6 @@
             </div>
             <p class="px-6 py-5 text-ink/70">We perform comprehensive network cable testing to identify and resolve slow speeds, intermittent dropouts, and connectivity issues. Our diagnostics ensure your network operates reliably and at peak performance.</p>
           </article>
-          <!-- Card 4 -->
           <article class="reveal flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink/5 shadow-sm">
             <div class="flex items-center gap-3 bg-brand-600 px-6 py-5 text-white">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h4l2-3 4 6 2-3h4"/></svg>
@@ -432,7 +380,6 @@
               </ul>
             </div>
           </article>
-          <!-- Card 5 -->
           <article class="reveal flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink/5 shadow-sm lg:col-span-2">
             <div class="flex items-center gap-3 bg-brand-600 px-6 py-5 text-white">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"/></svg>
@@ -444,12 +391,58 @@
       </div>
     </section>
 
+    <!-- ===================== DATA CENTERS ===================== -->
+    <section id="data-centers" class="bg-ink text-white">
+      <div class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-28">
+        <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div class="reveal">
+            <p class="eyebrow text-sky-2">// Data Centers</p>
+            <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 leading-[1.02]">Data center buildouts, done right.</h2>
+            <p class="mt-6 text-lg text-white/70 font-light max-w-xl">
+              From server rooms to full data center buildouts, we install the racks, cabinets, structured cabling, fiber
+              backbones, and power distribution that keep critical systems online. Every run is dressed, labeled, tested,
+              and built to scale.
+            </p>
+            <div class="mt-8 grid gap-4 sm:grid-cols-3">
+              <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#59b8f6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h.01M9 11h.01M9 15h.01M13 7h2M13 11h2M13 15h2"/></svg>
+                <div class="mt-3 font-semibold">Racks &amp; Cabinets</div>
+                <div class="text-sm text-white/60">Rack &amp; stack, cable management, patch panels.</div>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#59b8f6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7c5 0 5 10 10 10s6 0 6 0"/><circle cx="4" cy="7" r="1.6"/><circle cx="20" cy="17" r="1.6"/></svg>
+                <div class="mt-3 font-semibold">Fiber Backbones</div>
+                <div class="text-sm text-white/60">Single &amp; multimode links between floors and buildings.</div>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#59b8f6" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>
+                <div class="mt-3 font-semibold">Power &amp; Cooling</div>
+                <div class="text-sm text-white/60">Backup &amp; distributed power, organized for uptime.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Image slots ready for real project photos (drop files in /assets and swap the src) -->
+          <div class="reveal grid grid-cols-2 gap-4">
+            <div class="col-span-2 aspect-[16/10] rounded-2xl border border-white/10 bg-gradient-to-br from-brand-700/40 to-ink-2 grid place-items-center text-center">
+              <div class="px-6">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#59b8f6" stroke-width="1.6" class="mx-auto" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+                <p class="mt-3 text-sm text-white/55">Your data center &amp; rack photos go here</p>
+              </div>
+            </div>
+            <div class="aspect-square rounded-2xl border border-white/10 bg-gradient-to-br from-brand-700/30 to-ink-2"></div>
+            <div class="aspect-square rounded-2xl border border-white/10 bg-gradient-to-br from-brand-700/30 to-ink-2"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===================== CTA BAND ===================== -->
     <section class="bg-brand-600 text-white">
       <div class="mx-auto max-w-content px-5 sm:px-8 py-14 sm:py-16 flex flex-col items-center text-center gap-5 reveal">
         <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl leading-tight">Let&rsquo;s plan your install.</h2>
-        <p class="max-w-xl text-white/80 font-light">Tell us about your space and we&rsquo;ll scope the cabling, racks, and drops — clean, labeled, and tested.</p>
-        <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-brand-700 hover:bg-azure-2 hover:text-ink transition">
+        <p class="max-w-xl text-white/80 font-light">Tell us about your space and we&rsquo;ll scope the cabling, racks, and drops. Clean, labeled, and tested.</p>
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-brand-700 hover:bg-sky-2 hover:text-ink transition">
           Request a Quote
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
         </a>
@@ -460,7 +453,7 @@
     <section id="about" class="bg-ink text-white">
       <div class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-28 grid gap-14 lg:grid-cols-2 lg:items-center">
         <div class="reveal">
-          <p class="eyebrow text-azure-2">// Why JDP</p>
+          <p class="eyebrow text-sky-2">// Why JDP</p>
           <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 leading-[1.02]">Built right, the first time.</h2>
           <p class="mt-6 text-lg text-white/70 font-light max-w-xl">
             Whether you&rsquo;re upgrading an existing network or building from the ground up, we provide the expertise,
@@ -469,19 +462,19 @@
         </div>
         <div class="reveal grid grid-cols-2 gap-4">
           <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <div class="font-display text-5xl text-azure-2 leading-none">25+</div>
+            <div class="font-display text-5xl text-sky-2 leading-none">25+</div>
             <div class="mt-2 text-sm text-white/65">Years in business</div>
           </div>
           <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <div class="font-display text-4xl text-azure-2 leading-none">Licensed</div>
+            <div class="font-display text-4xl text-sky-2 leading-none">Licensed</div>
             <div class="mt-2 text-sm text-white/65">Low-voltage contractor<br/>CSLB #1061737</div>
           </div>
           <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <div class="font-display text-3xl text-azure-2 leading-none">Voice · Data · Video</div>
+            <div class="font-display text-3xl text-sky-2 leading-none">Voice · Data · Video</div>
             <div class="mt-2 text-sm text-white/65">For businesses of all sizes</div>
           </div>
           <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <div class="font-display text-3xl text-azure-2 leading-none">Orange County</div>
+            <div class="font-display text-3xl text-sky-2 leading-none">Orange County</div>
             <div class="mt-2 text-sm text-white/65">&amp; Southern California</div>
           </div>
         </div>
@@ -507,16 +500,16 @@
     <section id="contact" class="bg-ink text-white">
       <div class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-28 grid gap-12 lg:grid-cols-2">
         <div class="reveal">
-          <p class="eyebrow text-azure-2">// Contact</p>
+          <p class="eyebrow text-sky-2">// Contact</p>
           <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 leading-[1.02]">Request a quote</h2>
           <p class="mt-5 text-lg text-white/70 font-light max-w-md">Call us or send a few details about your project and we&rsquo;ll get right back to you.</p>
 
           <a href="tel:+19493342852" class="mt-8 inline-flex items-center gap-3 group">
-            <span class="grid h-12 w-12 place-items-center rounded-full bg-azure/15 text-azure-2 group-hover:bg-azure/25 transition">
+            <span class="grid h-12 w-12 place-items-center rounded-full bg-sky/15 text-sky-2 group-hover:bg-sky/25 transition">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </span>
             <span>
-              <span class="block text-2xl font-display">949-334-2852</span>
+              <span class="block text-2xl font-display">949.334.2852</span>
               <span class="eyebrow text-white/50 text-[10px]">Call or text</span>
             </span>
           </a>
@@ -526,26 +519,26 @@
           <div class="grid sm:grid-cols-2 gap-4">
             <label class="block">
               <span class="text-sm text-white/70">Name</span>
-              <input name="name" type="text" required autocomplete="name" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-azure-2" placeholder="Your name" />
+              <input name="name" type="text" required autocomplete="name" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Your name" />
             </label>
             <label class="block">
               <span class="text-sm text-white/70">Company</span>
-              <input name="company" type="text" autocomplete="organization" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-azure-2" placeholder="Company (optional)" />
+              <input name="company" type="text" autocomplete="organization" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Company (optional)" />
             </label>
           </div>
           <label class="block">
             <span class="text-sm text-white/70">Phone</span>
-            <input name="phone" type="tel" required autocomplete="tel" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-azure-2" placeholder="(xxx) xxx-xxxx" />
+            <input name="phone" type="tel" required autocomplete="tel" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="(xxx) xxx xxxx" />
           </label>
           <label class="block">
             <span class="text-sm text-white/70">Project details</span>
-            <textarea name="message" rows="4" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-azure-2" placeholder="Cabling, racks, drops, square footage, timeline…"></textarea>
+            <textarea name="message" rows="4" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Cabling, racks, drops, square footage, timeline"></textarea>
           </label>
-          <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-azure px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition">
+          <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition">
             Send request
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
-          <p id="formNote" hidden class="text-sm text-azure-2">Thanks — we&rsquo;ll be in touch. For anything urgent, call <a class="underline" href="tel:+19493342852">949-334-2852</a>.</p>
+          <p id="formNote" hidden class="text-sm text-sky-2">Thanks, we&rsquo;ll be in touch. For anything urgent, call <a class="underline" href="tel:+19493342852">949.334.2852</a>.</p>
         </form>
       </div>
     </section>
@@ -556,26 +549,22 @@
     <div class="mx-auto max-w-content px-5 sm:px-8 py-14">
       <div class="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <div class="flex items-center gap-2.5">
-            <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand-600">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="13" height="6" rx="1.5"/><path d="M16 11h3l2 1-2 1h-3"/></svg>
-            </span>
-            <span class="font-display italic text-2xl text-white">jdp <span class="eyebrow text-[9px] text-white/50 align-middle">Communications</span></span>
-          </div>
-          <p class="mt-4 max-w-xs text-sm">Network Infrastructure Cabling Solutions — voice, data, and video for businesses of all sizes.</p>
-          <a href="tel:+19493342852" class="mt-4 inline-block font-display text-xl text-white hover:text-azure-2 transition">949-334-2852</a>
+          <svg class="h-12 w-auto" viewBox="0 0 236 152" role="img" aria-label="jdp Communications"><use href="#jdpLogo"/></svg>
+          <p class="mt-4 max-w-xs text-sm">Network Infrastructure Cabling Solutions. Voice, data, and video for businesses of all sizes.</p>
+          <a href="tel:+19493342852" class="mt-4 inline-block font-display text-xl text-white hover:text-sky-2 transition">949.334.2852</a>
         </div>
 
         <nav class="flex flex-col gap-2 text-sm" aria-label="Footer">
           <a href="#top" class="hover:text-white transition">Home</a>
           <a href="#services" class="hover:text-white transition">Services</a>
+          <a href="#data-centers" class="hover:text-white transition">Data Centers</a>
           <a href="#about" class="hover:text-white transition">About Us</a>
           <a href="#contact" class="hover:text-white transition">Contact Us</a>
         </nav>
       </div>
 
       <div class="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
-        <p class="uppercase tracking-wide">Copyright &copy; 2026 JDPCommunications — All Rights Reserved.</p>
+        <p class="uppercase tracking-wide">Copyright &copy; 2026 JDPCommunications. All Rights Reserved.</p>
         <div class="flex gap-5">
           <a href="#" class="hover:text-white transition">Privacy Policy</a>
           <a href="#" class="hover:text-white transition">Terms and Conditions</a>
@@ -584,7 +573,6 @@
     </div>
   </footer>
 
-  <!-- ===================== SCROLL ENGINE ===================== -->
   <script>
     (function () {
       var hero = document.getElementById("hero");
@@ -596,28 +584,26 @@
       function easeOutBack(t) { var s = 1.70158, u = t - 1; return 1 + (s + 1) * u * u * u + s * u * u; }
 
       function setVars(p) {
-        var plug = sub(p, 0, 0.35), flow = sub(p, 0.35, 0.72), building = sub(p, 0.55, 0.95);
+        var plug = sub(p, 0, 0.42), energy = sub(p, 0.40, 0.72), spider = sub(p, 0.55, 0.95), zoom = sub(p, 0.42, 0.95);
         root.style.setProperty("--p", p.toFixed(4));
         root.style.setProperty("--plug", plug.toFixed(4));
-        root.style.setProperty("--flow", flow.toFixed(4));
-        root.style.setProperty("--building", building.toFixed(4));
-        root.style.setProperty("--plugX", (-150 * (1 - easeOutBack(plug))).toFixed(2));
+        root.style.setProperty("--energy", energy.toFixed(4));
+        root.style.setProperty("--spider", spider.toFixed(4));
+        root.style.setProperty("--zoom", zoom.toFixed(4));
+        root.style.setProperty("--plugX", (-180 * (1 - easeOutBack(plug))).toFixed(2));
       }
 
-      // Mobile menu (independent of the scroll engine)
       var mb = document.getElementById("menuBtn"), mp = document.getElementById("mobilePanel");
       if (mb && mp) {
         mb.addEventListener("click", function () {
-          var open = !mp.hasAttribute("hidden");
-          if (open) { mp.setAttribute("hidden", ""); mb.setAttribute("aria-expanded", "false"); }
-          else { mp.removeAttribute("hidden"); mb.setAttribute("aria-expanded", "true"); }
+          if (mp.hasAttribute("hidden")) { mp.removeAttribute("hidden"); mb.setAttribute("aria-expanded", "true"); }
+          else { mp.setAttribute("hidden", ""); mb.setAttribute("aria-expanded", "false"); }
         });
         mp.querySelectorAll("a").forEach(function (a) {
           a.addEventListener("click", function () { mp.setAttribute("hidden", ""); mb.setAttribute("aria-expanded", "false"); });
         });
       }
 
-      // Contact form (front-end only — no backend wired)
       var f = document.getElementById("quoteForm");
       if (f) {
         f.addEventListener("submit", function (ev) {
@@ -630,8 +616,6 @@
       }
 
       if (!hero) return;
-
-      // Reduced motion: hold the final lit frame, no scrubbing.
       if (rm.matches) { setVars(1); return; }
 
       var ticking = false;
@@ -647,7 +631,6 @@
       addEventListener("resize", onScroll, { passive: true });
       render();
 
-      // Entrance reveals
       if ("IntersectionObserver" in window) {
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
