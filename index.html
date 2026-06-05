@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>JDP Communications — Network Infrastructure Cabling Solutions</title>
-  <meta name="description" content="JDP Communications designs and installs data centers, structured cabling, and high-performance networks that support voice, data, and video for businesses of all sizes." />
+  <title>JDP Communications | Network Infrastructure Cabling Solutions</title>
+  <meta name="description" content="JDP Communications designs and installs data centers, structured cabling, and high-performance networks that support voice, data, and video for businesses of all sizes. 25+ years, licensed low-voltage contractor in Orange County, CA." />
   <meta name="theme-color" content="#0a1726" />
 
   <script>document.documentElement.classList.add('js');</script>
@@ -17,13 +17,9 @@
       theme: {
         extend: {
           colors: {
-            ink:   "#0a1726",
-            "ink-2": "#0e2236",
-            night: "#060f1c",
+            ink: "#0a1726", "ink-2": "#0e2236", night: "#060f1c",
             brand: { 100:"#dbeaf7", 300:"#9bc0e0", 400:"#5a95c6", 500:"#2f73b0", 600:"#1b5a96", 700:"#154472", 800:"#0f3357" },
-            sky:   "#1fa0ee",
-            "sky-2": "#59b8f6",
-            mist:  "#f4f8fc",
+            sky: "#1fa0ee", "sky-2": "#59b8f6", mist: "#f4f8fc",
           },
           fontFamily: {
             display: ['"Instrument Serif"', "ui-serif", "Georgia", "serif"],
@@ -41,7 +37,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,600;1,700&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* Scroll-driven vars. Defaults = FINAL frame (plugged + electrified) so the page works with no JS. */
+    /* Scroll-driven vars for the pinned feature. Defaults = final frame (works with no JS). */
     :root { --p:1; --plug:1; --energy:1; --spider:1; --zoom:1; --plugX:0; }
     html.js { --p:0; --plug:0; --energy:0; --spider:0; --zoom:0; --plugX:-180; }
 
@@ -54,62 +50,55 @@
     .eyebrow { font-family: "Space Mono", ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.72rem; }
     :where(a,button,input,textarea,summary,[tabindex]):focus-visible { outline: 2px solid #59b8f6; outline-offset: 3px; border-radius: 4px; }
 
-    /* ---------- Pinned hero ---------- */
-    .hero-bg { position: absolute; inset: 0;
-      background:
-        radial-gradient(50% 46% at 62% 52%, rgba(31,160,238,.20), transparent 70%),
-        radial-gradient(38% 38% at 30% 30%, rgba(31,160,238,.08), transparent 72%);
-    }
-    .hero-bg::after { content: ""; position: absolute; inset: 0;
-      background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size: 26px 26px;
-      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
-              mask-image: linear-gradient(to bottom, transparent, #000 20%, #000 80%, transparent);
-    }
-    .hero-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .hero-scrim { position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(to right, rgba(10,23,38,.90) 0%, rgba(10,23,38,.45) 32%, rgba(10,23,38,0) 58%); }
+    .grid-bg { background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px); background-size: 26px 26px; }
 
-    /* camera zoom into the connection point */
-    #hero-scene { transform-box: view-box; transform-origin: 786px 410px;
-      transform: scale(calc(1 + var(--zoom) * 0.18)); }
-    /* connector slides into the port */
+    /* ---------- Pinned feature ---------- */
+    .feat-bg { position:absolute; inset:0;
+      background: radial-gradient(52% 50% at 60% 52%, rgba(31,160,238,.18), transparent 70%); }
+    .feat-photo { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0;
+      transform: scale(calc(1.04 + var(--zoom) * 0.14)); transition: opacity .4s ease; }
+    #feature.has-photo .feat-photo { opacity:1; }
+    #feature.has-photo .feat-illus { opacity:0; }
+    .feat-svg { position:absolute; inset:0; width:100%; height:100%; }
+    .feat-scrim { position:absolute; inset:0; pointer-events:none;
+      background: linear-gradient(to right, rgba(10,23,38,.92) 0%, rgba(10,23,38,.5) 34%, rgba(10,23,38,0) 60%); }
+
+    #feat-scene { transform-box: view-box; transform-origin: 786px 410px; transform: scale(calc(1 + var(--zoom) * 0.18)); }
     #connector { transform: translateX(calc(var(--plugX) * 1px)); will-change: transform; }
 
-    .gold-lit { fill: #fff6cf; opacity: calc(clamp(0, var(--energy), 1) * .8); }
+    .gold-lit { fill:#fff6cf; opacity: calc(clamp(0, var(--energy), 1) * .85); }
     .port-led { opacity: clamp(0, (var(--energy) - var(--d,0)) * 8, 1); filter: drop-shadow(0 0 3px currentColor); }
-    .seam { fill: #e6f5ff; opacity: clamp(0, var(--energy) * 1.2, 1);
-            filter: drop-shadow(0 0 16px rgba(47,176,251,.95)); }
+    .seam { fill:#e6f5ff; opacity: clamp(0, var(--energy) * 1.2, 1); filter: drop-shadow(0 0 18px rgba(47,176,251,.95)); }
     .seam-halo { fill: rgba(47,176,251,.5); opacity: calc(var(--energy) * .9);
-            transform: scale(calc(.4 + var(--energy) * .9)); transform-box: fill-box; transform-origin: center; }
+      transform: scale(calc(.4 + var(--energy) * .9)); transform-box: fill-box; transform-origin: center; }
 
-    .spark { fill: none; stroke-linecap: round; stroke-linejoin: round;
+    .spark { fill:none; stroke-linecap:round; stroke-linejoin:round;
       --sp: clamp(0, (var(--spider) - var(--d,0)) / .5, 1);
       stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--sp)); will-change: stroke-dashoffset; }
-    .spark.glow { stroke: #2fb0fb; stroke-width: 6; opacity: .85; filter: drop-shadow(0 0 6px rgba(47,176,251,.9)); }
-    .spark.core { stroke: #eaf6ff; stroke-width: 2; filter: drop-shadow(0 0 3px rgba(190,230,255,.95)); }
+    .spark.glow { stroke:#2fb0fb; stroke-width:5; opacity:.9; }
+    .spark.core { stroke:#eaf6ff; stroke-width:1.8; }
 
-    .hero-headline { opacity: calc(1 - var(--spider) * .08); }
-    .scroll-hint  { opacity: clamp(0, 1 - var(--p) * 7, 1); }
-    .prog-fill    { width: calc(var(--p) * 100%); }
-    .cap { transition: opacity .15s linear; }
+    /* scrollytelling copy steps */
+    .step { transition: opacity .2s linear; }
+    .track-dot { top: calc(var(--p) * 100%); transition: none; }
+    .prog-fill { width: calc(var(--p) * 100%); }
+    .scroll-hint { opacity: clamp(0, 1 - var(--p) * 7, 1); }
 
-    .js .reveal { opacity: 0; transform: translateY(16px); filter: blur(8px); }
-    .js .reveal.in { opacity: 1; transform: none; filter: none;
-      transition: opacity .7s ease, transform .7s ease, filter .7s ease; }
+    .js .reveal { opacity:0; transform: translateY(16px); filter: blur(8px); }
+    .js .reveal.in { opacity:1; transform:none; filter:none; transition: opacity .7s ease, transform .7s ease, filter .7s ease; }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
+      html { scroll-behavior:auto; }
       html.js { --p:1; --plug:1; --energy:1; --spider:1; --zoom:1; --plugX:0; }
-      .js .reveal { opacity: 1; transform: none; filter: none; }
-      #connector, .spark { will-change: auto; }
+      .js .reveal { opacity:1; transform:none; filter:none; }
+      #connector, .spark, .feat-photo { will-change:auto; transition:none; }
     }
   </style>
 </head>
 
 <body class="bg-ink text-white antialiased">
 
-  <!-- Reusable jdp logo (recreated as SVG; swap for the official file anytime) -->
+  <!-- Logo fallback (used if assets/jdp-logo.svg is absent) -->
   <svg width="0" height="0" class="absolute" aria-hidden="true" focusable="false">
     <defs>
       <symbol id="jdpLogo" viewBox="0 0 236 152">
@@ -126,7 +115,8 @@
     <div class="mx-auto max-w-content">
       <nav class="flex items-center justify-between rounded-full border border-white/10 bg-ink/70 backdrop-blur-md px-3 sm:px-5 py-2.5 shadow-lg shadow-black/30">
         <a href="#top" class="flex items-center" aria-label="JDP Communications home">
-          <svg class="h-9 w-auto" viewBox="0 0 236 152" role="img" aria-label="jdp Communications"><use href="#jdpLogo"/></svg>
+          <img src="assets/jdp-logo.svg" alt="JDP Communications" class="h-9 w-auto" onerror="if(this.src.indexOf('jdp-logo.svg')>-1){this.src='assets/jdp-logo.png'}else{this.style.display='none';this.nextElementSibling.style.display='block'}" />
+          <svg class="h-9 w-auto" style="display:none" viewBox="0 0 236 152" role="img" aria-label="jdp Communications"><use href="#jdpLogo"/></svg>
         </a>
 
         <div class="hidden md:flex items-center gap-1 text-sm text-white/85">
@@ -164,70 +154,123 @@
   </header>
 
   <main>
-    <!-- ===================== PINNED HERO ===================== -->
-    <section id="hero" class="relative overflow-clip bg-ink text-white">
-      <div class="sticky top-0 h-[100svh] w-full overflow-hidden">
-        <div class="hero-bg" aria-hidden="true"></div>
+    <!-- ===================== ABOVE-FOLD HERO (bold, professional) ===================== -->
+    <section id="hero" class="relative grid-bg flex min-h-[100svh] items-center bg-ink text-white overflow-clip">
+      <div class="feat-bg" aria-hidden="true"></div>
+      <div class="relative mx-auto w-full max-w-content px-5 sm:px-8 pt-28 pb-16 grid gap-12 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-7">
+          <p class="eyebrow text-sky-2 reveal">Network Infrastructure Cabling Solutions</p>
+          <h1 class="font-display text-[3rem] leading-[0.95] sm:text-6xl lg:text-7xl mt-4 reveal">
+            Reliable networks start with the right cabling partner.
+          </h1>
+          <p class="mt-6 max-w-xl text-lg text-white/75 font-light reveal">
+            JDP Communications designs and installs data centers, structured cabling, and high-performance networks
+            that carry voice, data, and video for businesses of all sizes. Licensed, organized, and built to last.
+          </p>
+          <div class="pointer-events-auto mt-8 flex flex-wrap items-center gap-3 reveal">
+            <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition">
+              Request a Quote
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+            <a href="tel:+19493342852" class="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white hover:bg-white/5 transition">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call 949.334.2852
+            </a>
+          </div>
+          <ul class="mt-8 flex flex-wrap gap-2.5 reveal">
+            <li class="rounded-full border border-white/12 bg-white/[0.03] px-4 py-1.5 text-sm text-white/80">25+ Years in business</li>
+            <li class="rounded-full border border-white/12 bg-white/[0.03] px-4 py-1.5 text-sm text-white/80">Licensed Low-Voltage · CSLB #1061737</li>
+            <li class="rounded-full border border-white/12 bg-white/[0.03] px-4 py-1.5 text-sm text-white/80">Orange County, CA</li>
+          </ul>
+        </div>
 
-        <svg class="hero-svg" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid meet"
-             role="img" aria-label="A close-up Cat6 RJ45 connector plugs into a network switch and electricity spiders outward from the connection.">
+        <!-- Right visual: real photo when present, else a clean static graphic -->
+        <div class="lg:col-span-5 reveal">
+          <div class="relative aspect-[4/5] sm:aspect-square lg:aspect-[4/5] overflow-hidden rounded-3xl border border-white/10">
+            <img src="assets/hero-rj45.jpg" alt="Cat6 RJ45 connector and network switch" class="absolute inset-0 h-full w-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+            <div style="display:none" class="absolute inset-0 grid-bg bg-gradient-to-br from-brand-700/50 to-ink-2">
+              <svg viewBox="0 0 400 500" class="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                  <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe6fb"/><stop offset="1" stop-color="#6fa6d8"/></linearGradient>
+                  <linearGradient id="hgold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a6"/><stop offset="1" stop-color="#b9842b"/></linearGradient>
+                </defs>
+                <g transform="translate(60 150) rotate(-12)">
+                  <rect x="-40" y="40" width="120" height="80" rx="16" fill="#1b4f86"/>
+                  <rect x="60" y="28" width="190" height="104" rx="12" fill="url(#hg)" stroke="#e8f3ff" stroke-width="2"/>
+                  <g><rect x="74" y="40" width="150" height="9" rx="2" fill="#ef9d2a"/><rect x="74" y="54" width="150" height="9" rx="2" fill="#2f7fe0"/><rect x="74" y="68" width="150" height="9" rx="2" fill="#22a35a"/><rect x="74" y="82" width="150" height="9" rx="2" fill="#7a4f25"/></g>
+                  <g fill="url(#hgold)"><rect x="232" y="36" width="8" height="92" rx="2"/><rect x="244" y="36" width="8" height="92" rx="2"/><rect x="256" y="36" width="8" height="92" rx="2"/></g>
+                </g>
+                <g stroke="#59b8f6" stroke-width="2.5" fill="none" opacity=".9" stroke-linecap="round">
+                  <path d="M300 250 L330 220 L318 196 L356 170"/><path d="M300 250 L340 268 L376 256"/><path d="M300 250 L296 300 L268 322"/>
+                </g>
+                <circle cx="300" cy="250" r="6" fill="#e6f5ff"/>
+              </svg>
+            </div>
+            <div class="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl"></div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#feature" class="absolute bottom-5 left-1/2 -translate-x-1/2 inline-flex flex-col items-center gap-1 text-white/55 hover:text-white transition">
+        <span class="eyebrow text-[10px]">See how it connects</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+      </a>
+    </section>
+
+    <!-- ===================== PINNED FEATURE (below fold, scrollytelling) ===================== -->
+    <section id="feature" class="relative overflow-clip bg-ink text-white">
+      <div class="sticky top-0 h-[100svh] w-full overflow-hidden">
+        <div class="feat-bg" aria-hidden="true"></div>
+        <div class="feat-photo" aria-hidden="true"></div>
+
+        <svg class="feat-svg feat-illus" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid meet"
+             role="img" aria-label="A close-up RJ45 connector plugs into a network switch and electricity spiders outward from the connection.">
           <title>RJ45 plugging into a switch, energizing</title>
           <desc>An up-close RJ45 connector slides into a switch port; on contact, blue electricity flows and branches outward.</desc>
-
           <defs>
-            <linearGradient id="boot" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#2b6bb0"/><stop offset="1" stop-color="#143a66"/>
-            </linearGradient>
-            <linearGradient id="housing" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#cfe6fb"/><stop offset=".5" stop-color="#9cc6ee"/><stop offset="1" stop-color="#6fa6d8"/>
-            </linearGradient>
-            <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#ffe9a6"/><stop offset=".5" stop-color="#e8b54e"/><stop offset="1" stop-color="#b9842b"/>
-            </linearGradient>
-            <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0" stop-color="#1a2332"/><stop offset=".5" stop-color="#243042"/><stop offset="1" stop-color="#161f2c"/>
-            </linearGradient>
-            <radialGradient id="burst" cx=".5" cy=".5" r=".5">
-              <stop offset="0" stop-color="#eaf7ff"/><stop offset=".4" stop-color="#56b7f6"/><stop offset="1" stop-color="rgba(47,176,251,0)"/>
-            </radialGradient>
+            <linearGradient id="boot" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b6bb0"/><stop offset="1" stop-color="#143a66"/></linearGradient>
+            <linearGradient id="housing" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6ecff"/><stop offset=".5" stop-color="#9cc6ee"/><stop offset="1" stop-color="#5f97cd"/></linearGradient>
+            <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a6"/><stop offset=".5" stop-color="#e8b54e"/><stop offset="1" stop-color="#b9842b"/></linearGradient>
+            <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1a2332"/><stop offset=".5" stop-color="#26344a"/><stop offset="1" stop-color="#141d29"/></linearGradient>
+            <radialGradient id="burst" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#eaf7ff"/><stop offset=".4" stop-color="#56b7f6"/><stop offset="1" stop-color="rgba(47,176,251,0)"/></radialGradient>
+            <filter id="elec" x="-30%" y="-30%" width="160%" height="160%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.02 0.05" numOctaves="2" seed="7" result="n"/>
+              <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G" result="d"/>
+              <feGaussianBlur in="d" stdDeviation="2.6" result="b"/>
+              <feMerge><feMergeNode in="b"/><feMergeNode in="d"/></feMerge>
+            </filter>
+            <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="0.5"/></filter>
           </defs>
 
-          <g id="hero-scene">
-            <!-- ===== Switch faceplate (right) ===== -->
-            <g id="faceplate">
+          <g id="feat-scene">
+            <!-- Switch faceplate -->
+            <g id="faceplate" filter="url(#soft)">
               <rect x="786" y="250" width="414" height="320" rx="10" fill="url(#metal)" stroke="#0c1420" stroke-width="2"/>
-              <rect x="800" y="250" width="3" height="320" fill="#2f3e54" opacity=".6"/>
+              <rect x="800" y="250" width="3" height="320" fill="#33455f" opacity=".6"/>
               <rect x="1180" y="250" width="3" height="320" fill="#0b121d" opacity=".7"/>
               <circle cx="806" cy="266" r="4" fill="#0c1420"/><circle cx="1184" cy="266" r="4" fill="#0c1420"/>
               <circle cx="806" cy="554" r="4" fill="#0c1420"/><circle cx="1184" cy="554" r="4" fill="#0c1420"/>
-              <!-- context ports (top & bottom) -->
               <g fill="#0a111c" stroke="#33455f" stroke-width="2">
                 <path d="M792 286 h78 v40 h-78 z M806 326 h50 v12 h-50 z"/>
                 <path d="M792 486 h78 v40 h-78 z M806 526 h50 v12 h-50 z"/>
               </g>
-              <!-- target port (the connector seats here) -->
               <g>
                 <rect x="788" y="372" width="86" height="78" rx="4" fill="#070d16" stroke="#3b5070" stroke-width="2"/>
                 <rect x="804" y="450" width="54" height="12" rx="2" fill="#070d16" stroke="#3b5070" stroke-width="2"/>
                 <rect x="792" y="376" width="80" height="5" rx="2" fill="#56708f" opacity=".7"/>
               </g>
-              <!-- link LEDs over target port -->
-              <rect class="port-led" style="--d:0"    x="792" y="360" width="12" height="7" rx="1.5" fill="#39d98a" color="#39d98a"/>
+              <rect class="port-led" style="--d:0"   x="792" y="360" width="12" height="7" rx="1.5" fill="#39d98a" color="#39d98a"/>
               <rect class="port-led" style="--d:.12" x="858" y="360" width="12" height="7" rx="1.5" fill="#ffc24b" color="#ffc24b"/>
             </g>
 
-            <!-- ===== RJ45 connector (slides in via --plugX) ===== -->
+            <!-- RJ45 connector -->
             <g id="connector">
-              <!-- cable tail + boot -->
               <path d="M150 470 C 260 452 320 446 392 440" fill="none" stroke="#1b4f86" stroke-width="40" stroke-linecap="round"/>
               <path d="M150 470 C 260 452 320 446 392 440" fill="none" stroke="#2b6bb0" stroke-width="22" stroke-linecap="round" opacity=".7"/>
               <rect x="388" y="356" width="120" height="120" rx="26" fill="url(#boot)" stroke="#0e2c4e" stroke-width="2"/>
               <g stroke="#15406e" stroke-width="3" opacity=".7"><path d="M420 360v112"/><path d="M450 360v112"/><path d="M480 360v112"/></g>
-              <!-- housing -->
-              <rect x="496" y="344" width="288" height="144" rx="14" fill="url(#housing)" stroke="#e8f3ff" stroke-width="2"/>
-              <!-- latch clip -->
-              <path d="M566 344 l14 -22 h44 l14 22 z" fill="#9cc6ee" stroke="#e8f3ff" stroke-width="2"/>
-              <!-- 8 colored conductors -->
+              <rect x="496" y="344" width="288" height="144" rx="14" fill="url(#housing)" stroke="#eaf4ff" stroke-width="2"/>
+              <path d="M566 344 l14 -22 h44 l14 22 z" fill="#9cc6ee" stroke="#eaf4ff" stroke-width="2"/>
               <g>
                 <rect x="512" y="356" width="210" height="12" rx="3" fill="#f4d2a3"/>
                 <rect x="512" y="372" width="210" height="12" rx="3" fill="#ef9d2a"/>
@@ -238,21 +281,14 @@
                 <rect x="512" y="452" width="210" height="12" rx="3" fill="#d8c2a6"/>
                 <rect x="512" y="468" width="210" height="12" rx="3" fill="#7a4f25"/>
               </g>
-              <!-- gloss -->
-              <rect x="508" y="352" width="268" height="26" rx="10" fill="#ffffff" opacity=".22"/>
-              <!-- gold contacts at the tip -->
-              <g>
-                <rect x="726" y="356" width="9" height="120" rx="2" fill="url(#gold)"/>
-                <rect x="740" y="356" width="9" height="120" rx="2" fill="url(#gold)"/>
-                <rect x="754" y="356" width="9" height="120" rx="2" fill="url(#gold)"/>
-                <rect x="768" y="356" width="9" height="120" rx="2" fill="url(#gold)"/>
-              </g>
+              <rect x="508" y="352" width="268" height="24" rx="10" fill="#ffffff" opacity=".24"/>
+              <g><rect x="726" y="356" width="9" height="120" rx="2" fill="url(#gold)"/><rect x="740" y="356" width="9" height="120" rx="2" fill="url(#gold)"/><rect x="754" y="356" width="9" height="120" rx="2" fill="url(#gold)"/><rect x="768" y="356" width="9" height="120" rx="2" fill="url(#gold)"/></g>
               <rect class="gold-lit" x="724" y="356" width="60" height="120" rx="3"/>
             </g>
 
-            <!-- ===== Electricity: seam burst + spider bolts ===== -->
+            <!-- Electricity -->
             <circle class="seam-halo" cx="790" cy="410" r="60" fill="url(#burst)"/>
-            <g class="sparks">
+            <g class="sparks" filter="url(#elec)">
               <path class="spark glow" pathLength="1" style="--d:0"   d="M790 410 L754 380 L770 352 L726 330 L742 300 L700 286 L654 300 M726 330 L692 308"/>
               <path class="spark core" pathLength="1" style="--d:0"   d="M790 410 L754 380 L770 352 L726 330 L742 300 L700 286 L654 300 M726 330 L692 308"/>
               <path class="spark glow" pathLength="1" style="--d:.05" d="M790 410 L786 366 L808 340 L788 300 L804 262 L776 232 L788 196 M788 300 L758 276"/>
@@ -274,56 +310,47 @@
           </g>
         </svg>
 
-        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="feat-scrim" aria-hidden="true"></div>
 
-        <!-- ===== Copy overlay ===== -->
+        <!-- Scrollytelling copy that advances as you scroll -->
         <div class="pointer-events-none absolute inset-0">
-          <div class="mx-auto flex h-full max-w-content flex-col px-5 sm:px-8 pt-[15svh] sm:pt-[17svh]">
-            <div class="max-w-xl">
-              <p class="eyebrow text-sky-2 reveal">Data Centers &middot; Structured Cabling &middot; Low Voltage</p>
-              <h1 class="hero-headline font-display text-[2.85rem] leading-[0.95] sm:text-6xl lg:text-7xl mt-4 reveal">
-                Reliable networks start with the right cabling partner.
-              </h1>
-              <p class="mt-5 max-w-md text-base sm:text-lg text-white/75 font-light reveal">
-                High-performance cabling for voice, data, and video. Data centers, server rooms, and businesses of all sizes.
-              </p>
-              <div class="pointer-events-auto mt-7 flex flex-wrap items-center gap-3 reveal">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition">
-                  Request a Quote
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
-                </a>
-                <a href="#services" class="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white hover:bg-white/5 transition">
-                  Explore Services
-                </a>
-              </div>
-            </div>
-          </div>
+          <div class="mx-auto flex h-full max-w-content flex-col justify-center px-5 sm:px-8">
+            <div class="max-w-md">
+              <p class="eyebrow text-sky-2">// How it connects</p>
+              <h2 class="font-display text-4xl sm:text-5xl mt-3 leading-[1.02]">From the crimp to every drop.</h2>
 
-          <div class="absolute bottom-16 inset-x-0">
-            <div class="mx-auto max-w-content px-5 sm:px-8">
-              <div class="eyebrow text-white/60 h-4 relative">
-                <span class="cap absolute" style="opacity: clamp(0, (0.46 - var(--p)) / 0.10, 1)">01 Plug in</span>
-                <span class="cap absolute" style="opacity: min(clamp(0,(var(--p) - 0.40)/0.06,1), clamp(0,(0.74 - var(--p))/0.08,1))">02 Energize</span>
-                <span class="cap absolute" style="opacity: clamp(0, (var(--p) - 0.60)/0.08, 1)">03 Spider out</span>
+              <div class="mt-8 flex gap-5">
+                <!-- progress track with a dot that follows your scroll -->
+                <div class="relative w-px bg-white/12 shrink-0" aria-hidden="true">
+                  <div class="track-dot absolute -left-[3px] h-1.5 w-1.5 rounded-full bg-sky-2" style="box-shadow:0 0 10px rgba(89,184,246,1)"></div>
+                </div>
+                <ol class="space-y-6">
+                  <li class="step" style="opacity: calc(0.28 + 0.72 * clamp(0, (0.46 - var(--p)) / 0.10, 1))">
+                    <p class="eyebrow text-white/55 text-[11px]">01 · Terminate &amp; seat</p>
+                    <p class="mt-1 text-white/85">Every cable is crimped, seated, and locked into the switch. No loose drops.</p>
+                  </li>
+                  <li class="step" style="opacity: calc(0.28 + 0.72 * min(clamp(0,(var(--p) - 0.40)/0.06,1), clamp(0,(0.76 - var(--p))/0.08,1)))">
+                    <p class="eyebrow text-white/55 text-[11px]">02 · Energize &amp; certify</p>
+                    <p class="mt-1 text-white/85">We power it up and test every link for clean, full speed performance.</p>
+                  </li>
+                  <li class="step" style="opacity: calc(0.28 + 0.72 * clamp(0, (var(--p) - 0.58)/0.10, 1))">
+                    <p class="eyebrow text-white/55 text-[11px]">03 · Branch out</p>
+                    <p class="mt-1 text-white/85">Connectivity spiders out to every rack, floor, and drop in the building.</p>
+                  </li>
+                </ol>
               </div>
             </div>
           </div>
 
           <div class="absolute bottom-8 inset-x-0">
             <div class="mx-auto max-w-content px-5 sm:px-8">
-              <div class="h-px w-full bg-white/12">
-                <div class="prog-fill h-px bg-sky-2" style="box-shadow:0 0 8px rgba(89,184,246,.9)"></div>
-              </div>
+              <div class="h-px w-full bg-white/12"><div class="prog-fill h-px bg-sky-2" style="box-shadow:0 0 8px rgba(89,184,246,.9)"></div></div>
             </div>
-          </div>
-
-          <div class="scroll-hint absolute bottom-3 left-1/2 -translate-x-1/2 text-white/55">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
           </div>
         </div>
       </div>
 
-      <div class="h-[300vh] max-md:h-[185vh]" aria-hidden="true"></div>
+      <div class="h-[340vh] max-md:h-[210vh]" aria-hidden="true"></div>
     </section>
 
     <!-- ===================== SERVICES ===================== -->
@@ -422,16 +449,21 @@
             </div>
           </div>
 
-          <!-- Image slots ready for real project photos (drop files in /assets and swap the src) -->
           <div class="reveal grid grid-cols-2 gap-4">
-            <div class="col-span-2 aspect-[16/10] rounded-2xl border border-white/10 bg-gradient-to-br from-brand-700/40 to-ink-2 grid place-items-center text-center">
-              <div class="px-6">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#59b8f6" stroke-width="1.6" class="mx-auto" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
-                <p class="mt-3 text-sm text-white/55">Your data center &amp; rack photos go here</p>
+            <div class="col-span-2 aspect-[16/10] overflow-hidden rounded-2xl border border-white/10">
+              <img src="assets/datacenter-1.jpg" alt="Data center rack" class="h-full w-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'" />
+              <div style="display:none" class="h-full w-full place-items-center text-center grid-bg bg-gradient-to-br from-brand-700/40 to-ink-2">
+                <div class="px-6"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#59b8f6" stroke-width="1.6" class="mx-auto" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg><p class="mt-3 text-sm text-white/55">Add assets/datacenter-1.jpg</p></div>
               </div>
             </div>
-            <div class="aspect-square rounded-2xl border border-white/10 bg-gradient-to-br from-brand-700/30 to-ink-2"></div>
-            <div class="aspect-square rounded-2xl border border-white/10 bg-gradient-to-br from-brand-700/30 to-ink-2"></div>
+            <div class="aspect-square overflow-hidden rounded-2xl border border-white/10">
+              <img src="assets/datacenter-2.jpg" alt="Cabling work" class="h-full w-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+              <div style="display:none" class="h-full w-full grid-bg bg-gradient-to-br from-brand-700/30 to-ink-2"></div>
+            </div>
+            <div class="aspect-square overflow-hidden rounded-2xl border border-white/10">
+              <img src="assets/datacenter-3.jpg" alt="Server cabinets" class="h-full w-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+              <div style="display:none" class="h-full w-full grid-bg bg-gradient-to-br from-brand-700/30 to-ink-2"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -449,7 +481,7 @@
       </div>
     </section>
 
-    <!-- ===================== ABOUT / WHY US ===================== -->
+    <!-- ===================== ABOUT ===================== -->
     <section id="about" class="bg-ink text-white">
       <div class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-28 grid gap-14 lg:grid-cols-2 lg:items-center">
         <div class="reveal">
@@ -461,22 +493,10 @@
           </p>
         </div>
         <div class="reveal grid grid-cols-2 gap-4">
-          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <div class="font-display text-5xl text-sky-2 leading-none">25+</div>
-            <div class="mt-2 text-sm text-white/65">Years in business</div>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <div class="font-display text-4xl text-sky-2 leading-none">Licensed</div>
-            <div class="mt-2 text-sm text-white/65">Low-voltage contractor<br/>CSLB #1061737</div>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <div class="font-display text-3xl text-sky-2 leading-none">Voice · Data · Video</div>
-            <div class="mt-2 text-sm text-white/65">For businesses of all sizes</div>
-          </div>
-          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <div class="font-display text-3xl text-sky-2 leading-none">Orange County</div>
-            <div class="mt-2 text-sm text-white/65">&amp; Southern California</div>
-          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6"><div class="font-display text-5xl text-sky-2 leading-none">25+</div><div class="mt-2 text-sm text-white/65">Years in business</div></div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6"><div class="font-display text-4xl text-sky-2 leading-none">Licensed</div><div class="mt-2 text-sm text-white/65">Low-voltage contractor<br/>CSLB #1061737</div></div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6"><div class="font-display text-3xl text-sky-2 leading-none">Voice · Data · Video</div><div class="mt-2 text-sm text-white/65">For businesses of all sizes</div></div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6"><div class="font-display text-3xl text-sky-2 leading-none">Orange County</div><div class="mt-2 text-sm text-white/65">&amp; Southern California</div></div>
         </div>
       </div>
     </section>
@@ -503,37 +523,21 @@
           <p class="eyebrow text-sky-2">// Contact</p>
           <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 leading-[1.02]">Request a quote</h2>
           <p class="mt-5 text-lg text-white/70 font-light max-w-md">Call us or send a few details about your project and we&rsquo;ll get right back to you.</p>
-
           <a href="tel:+19493342852" class="mt-8 inline-flex items-center gap-3 group">
             <span class="grid h-12 w-12 place-items-center rounded-full bg-sky/15 text-sky-2 group-hover:bg-sky/25 transition">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </span>
-            <span>
-              <span class="block text-2xl font-display">949.334.2852</span>
-              <span class="eyebrow text-white/50 text-[10px]">Call or text</span>
-            </span>
+            <span><span class="block text-2xl font-display">949.334.2852</span><span class="eyebrow text-white/50 text-[10px]">Call or text</span></span>
           </a>
         </div>
 
         <form id="quoteForm" class="reveal rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8 space-y-4" novalidate>
           <div class="grid sm:grid-cols-2 gap-4">
-            <label class="block">
-              <span class="text-sm text-white/70">Name</span>
-              <input name="name" type="text" required autocomplete="name" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Your name" />
-            </label>
-            <label class="block">
-              <span class="text-sm text-white/70">Company</span>
-              <input name="company" type="text" autocomplete="organization" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Company (optional)" />
-            </label>
+            <label class="block"><span class="text-sm text-white/70">Name</span><input name="name" type="text" required autocomplete="name" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Your name" /></label>
+            <label class="block"><span class="text-sm text-white/70">Company</span><input name="company" type="text" autocomplete="organization" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Company (optional)" /></label>
           </div>
-          <label class="block">
-            <span class="text-sm text-white/70">Phone</span>
-            <input name="phone" type="tel" required autocomplete="tel" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="(xxx) xxx xxxx" />
-          </label>
-          <label class="block">
-            <span class="text-sm text-white/70">Project details</span>
-            <textarea name="message" rows="4" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Cabling, racks, drops, square footage, timeline"></textarea>
-          </label>
+          <label class="block"><span class="text-sm text-white/70">Phone</span><input name="phone" type="tel" required autocomplete="tel" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="(xxx) xxx xxxx" /></label>
+          <label class="block"><span class="text-sm text-white/70">Project details</span><textarea name="message" rows="4" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Cabling, racks, drops, square footage, timeline"></textarea></label>
           <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition">
             Send request
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -549,11 +553,11 @@
     <div class="mx-auto max-w-content px-5 sm:px-8 py-14">
       <div class="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <svg class="h-12 w-auto" viewBox="0 0 236 152" role="img" aria-label="jdp Communications"><use href="#jdpLogo"/></svg>
+          <img src="assets/jdp-logo.svg" alt="JDP Communications" class="h-12 w-auto" onerror="if(this.src.indexOf('jdp-logo.svg')>-1){this.src='assets/jdp-logo.png'}else{this.style.display='none';this.nextElementSibling.style.display='block'}" />
+          <svg class="h-12 w-auto" style="display:none" viewBox="0 0 236 152" role="img" aria-label="jdp Communications"><use href="#jdpLogo"/></svg>
           <p class="mt-4 max-w-xs text-sm">Network Infrastructure Cabling Solutions. Voice, data, and video for businesses of all sizes.</p>
           <a href="tel:+19493342852" class="mt-4 inline-block font-display text-xl text-white hover:text-sky-2 transition">949.334.2852</a>
         </div>
-
         <nav class="flex flex-col gap-2 text-sm" aria-label="Footer">
           <a href="#top" class="hover:text-white transition">Home</a>
           <a href="#services" class="hover:text-white transition">Services</a>
@@ -562,27 +566,22 @@
           <a href="#contact" class="hover:text-white transition">Contact Us</a>
         </nav>
       </div>
-
       <div class="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
         <p class="uppercase tracking-wide">Copyright &copy; 2026 JDPCommunications. All Rights Reserved.</p>
-        <div class="flex gap-5">
-          <a href="#" class="hover:text-white transition">Privacy Policy</a>
-          <a href="#" class="hover:text-white transition">Terms and Conditions</a>
-        </div>
+        <div class="flex gap-5"><a href="#" class="hover:text-white transition">Privacy Policy</a><a href="#" class="hover:text-white transition">Terms and Conditions</a></div>
       </div>
     </div>
   </footer>
 
   <script>
     (function () {
-      var hero = document.getElementById("hero");
+      var feature = document.getElementById("feature");
       var root = document.documentElement;
       var rm = window.matchMedia("(prefers-reduced-motion: reduce)");
 
       function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
       function sub(p, a, b) { return clamp01((p - a) / (b - a)); }
       function easeOutBack(t) { var s = 1.70158, u = t - 1; return 1 + (s + 1) * u * u * u + s * u * u; }
-
       function setVars(p) {
         var plug = sub(p, 0, 0.42), energy = sub(p, 0.40, 0.72), spider = sub(p, 0.55, 0.95), zoom = sub(p, 0.42, 0.95);
         root.style.setProperty("--p", p.toFixed(4));
@@ -593,15 +592,24 @@
         root.style.setProperty("--plugX", (-180 * (1 - easeOutBack(plug))).toFixed(2));
       }
 
+      // Use the real hero photo for the pinned feature if it exists
+      if (feature) {
+        var probe = new Image();
+        probe.onload = function () {
+          feature.classList.add("has-photo");
+          var ph = feature.querySelector(".feat-photo");
+          if (ph) ph.style.backgroundImage = "url('assets/hero-rj45.jpg')";
+        };
+        probe.src = "assets/hero-rj45.jpg";
+      }
+
       var mb = document.getElementById("menuBtn"), mp = document.getElementById("mobilePanel");
       if (mb && mp) {
         mb.addEventListener("click", function () {
           if (mp.hasAttribute("hidden")) { mp.removeAttribute("hidden"); mb.setAttribute("aria-expanded", "true"); }
           else { mp.setAttribute("hidden", ""); mb.setAttribute("aria-expanded", "false"); }
         });
-        mp.querySelectorAll("a").forEach(function (a) {
-          a.addEventListener("click", function () { mp.setAttribute("hidden", ""); mb.setAttribute("aria-expanded", "false"); });
-        });
+        mp.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { mp.setAttribute("hidden", ""); mb.setAttribute("aria-expanded", "false"); }); });
       }
 
       var f = document.getElementById("quoteForm");
@@ -609,22 +617,19 @@
         f.addEventListener("submit", function (ev) {
           ev.preventDefault();
           if (!f.checkValidity()) { f.reportValidity && f.reportValidity(); return; }
-          var note = document.getElementById("formNote");
-          if (note) note.hidden = false;
-          f.reset();
+          var note = document.getElementById("formNote"); if (note) note.hidden = false; f.reset();
         });
       }
 
-      if (!hero) return;
+      if (!feature) return;
       if (rm.matches) { setVars(1); return; }
 
       var ticking = false;
       function render() {
-        var rect = hero.getBoundingClientRect();
+        var rect = feature.getBoundingClientRect();
         var total = rect.height - window.innerHeight;
         var p = total > 0 ? clamp01(-rect.top / total) : (rect.top <= 0 ? 1 : 0);
-        setVars(p);
-        ticking = false;
+        setVars(p); ticking = false;
       }
       function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
       addEventListener("scroll", onScroll, { passive: true });
