@@ -2,598 +2,661 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JDP Communications — Low-Voltage & Structured Cabling Contractor</title>
-  <meta name="description" content="JDP Communications designs and installs server rooms, data centers, Cat6 structured cabling, and fiber optic backbones built for uptime." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>JDP Communications — Network Infrastructure Cabling Solutions</title>
+  <meta name="description" content="JDP Communications designs and installs high-performance network cabling systems that support voice, data, and video for businesses of all sizes — structured cabling, communications rooms, testing, and circuits." />
+  <meta name="theme-color" content="#0b1220" />
 
-  <!-- Tailwind (CDN) -->
+  <!-- Progressive enhancement: flag JS before first paint so we can gate the start state -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- Favicon (inline, avoids 404) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b1220'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='18' fill='%234f7cff' text-anchor='middle'%3Ej%3C/text%3E%3C/svg%3E" />
+
+  <!-- Tailwind (Play CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind config -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
+          colors: {
+            ink:   "#0b1220",
+            "ink-2": "#0e1730",
+            night: "#070b14",
+            brand: { 100:"#dbe1f6", 300:"#9aa9e6", 400:"#5b6cc4", 500:"#3a4aa8", 600:"#2e3a8f", 700:"#243072", 800:"#1b2456" },
+            azure: "#4f7cff",
+            "azure-2": "#7aa6ff",
+            mist: "#f6f7fb",
+          },
           fontFamily: {
-            heading: ["Instrument Serif", "serif"],
-            body: ["Barlow", "sans-serif"],
+            display: ['"Instrument Serif"', "ui-serif", "Georgia", "serif"],
+            sans: ["Barlow", "ui-sans-serif", "system-ui", "sans-serif"],
+            mono: ['"Space Mono"', "ui-monospace", "monospace"],
           },
-          borderRadius: {
-            DEFAULT: "9999px",
-          },
+          maxWidth: { content: "1280px" },
         },
       },
     };
   </script>
 
-  <!-- Liquid-glass design system -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
   <style>
-    html, body { background: #000; }
-    body { font-family: "Barlow", sans-serif; }
+    /* ===== Scroll-driven custom properties =====
+       Defaults = FINAL lit frame, so with no JS the hero shows the cable plugged in
+       and the building fully connected. html.js flips to the start state; JS drives it. */
+    :root { --p:1; --plug:1; --flow:1; --building:1; --plugX:0; }
+    html.js { --p:0; --plug:0; --flow:0; --building:0; --plugX:-150; }
 
-    .liquid-glass {
-      background: rgba(255, 255, 255, 0.01);
-      background-blend-mode: luminosity;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border: none;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-    .liquid-glass::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1.4px;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.45) 0%,
-        rgba(255, 255, 255, 0.15) 20%,
-        rgba(255, 255, 255, 0) 40%,
-        rgba(255, 255, 255, 0) 60%,
-        rgba(255, 255, 255, 0.15) 80%,
-        rgba(255, 255, 255, 0.45) 100%
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+    html, body { overflow-x: clip; }           /* kill horizontal scroll WITHOUT creating a sticky-breaking scroll container */
+    body { background: #0b1220; font-family: "Barlow", sans-serif; }
+    ::selection { background: #4f7cff; color: #fff; }
+
+    .font-display { font-family: "Instrument Serif", Georgia, serif; }
+    .eyebrow { font-family: "Space Mono", ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.72rem; }
+
+    :where(a, button, input, textarea, summary, [tabindex]):focus-visible {
+      outline: 2px solid #7aa6ff; outline-offset: 3px; border-radius: 4px;
     }
 
-    .liquid-glass-strong {
-      background: rgba(255, 255, 255, 0.01);
-      background-blend-mode: luminosity;
-      backdrop-filter: blur(50px);
-      -webkit-backdrop-filter: blur(50px);
-      border: none;
-      box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-      position: relative;
-      overflow: hidden;
+    /* ===== Pinned hero scene ===== */
+    .hero-bg { position: absolute; inset: 0;
+      background:
+        radial-gradient(58% 48% at 50% 40%, rgba(79,124,255,.20), transparent 70%),
+        radial-gradient(42% 42% at 82% 88%, rgba(79,124,255,.10), transparent 72%);
     }
-    .liquid-glass-strong::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      padding: 1.4px;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.5) 0%,
-        rgba(255, 255, 255, 0.2) 20%,
-        rgba(255, 255, 255, 0) 40%,
-        rgba(255, 255, 255, 0) 60%,
-        rgba(255, 255, 255, 0.2) 80%,
-        rgba(255, 255, 255, 0.5) 100%
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+    .hero-bg::after { content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+      background-size: 26px 26px;
+      -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+              mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+    }
+    .hero-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero-scrim { position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to right, rgba(11,18,32,.88) 0%, rgba(11,18,32,.45) 34%, rgba(11,18,32,0) 60%); }
+
+    #cablePlug { transform: translateX(calc(var(--plugX) * 1px)); will-change: transform; }
+
+    .cable-jacket { fill: none; stroke: #2b3b66; stroke-width: 15; stroke-linecap: round; }
+    .cable-core {
+      fill: none; stroke: #7aa6ff; stroke-width: 5; stroke-linecap: round;
+      stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--flow));
+      filter: drop-shadow(0 0 6px rgba(122,166,255,.95)); will-change: stroke-dashoffset;
+    }
+    .contacts { stroke: #ffd479; stroke-width: 2.4; opacity: calc(.35 + clamp(0, var(--flow), 1) * .65); }
+
+    .led { fill: #4f7cff; opacity: clamp(0, (var(--flow) - var(--d, 0)) * 6, 1);
+           filter: drop-shadow(0 0 3px rgba(79,124,255,.95)); }
+    .sw-lit { fill: #4f7cff; opacity: calc(clamp(0, (var(--flow) - var(--d, 0)) * 6, 1) * 0.16); }
+
+    .dist-base { fill: none; stroke: #21305c; stroke-width: 3.5; stroke-linecap: round; }
+    .dist {
+      fill: none; stroke: #4f7cff; stroke-width: 3.5; stroke-linecap: round;
+      --f: clamp(0, (var(--building) - var(--d, 0)) / .5, 1);
+      stroke-dasharray: 1; stroke-dashoffset: calc(1 - var(--f));
+      filter: drop-shadow(0 0 5px rgba(79,124,255,.85)); will-change: stroke-dashoffset;
+    }
+    .node { fill: #9bc1ff; opacity: clamp(0, (var(--building) - var(--d, 0) - .1) * 6, 1);
+            filter: drop-shadow(0 0 5px rgba(155,193,255,.95)); }
+    .out-node { fill: #9bc1ff; opacity: clamp(0, (var(--flow) - .55) * 5, 1);
+                filter: drop-shadow(0 0 6px rgba(155,193,255,.9)); }
+    .room { fill: #4f7cff; fill-opacity: clamp(0, (var(--building) - var(--d, 0) - .22) * 4, .82); }
+
+    .seat-flash { fill: #cfe0ff; --seat: clamp(0, (var(--plug) - .84) / .16, 1);
+                  opacity: calc(var(--seat) * (1 - var(--seat)) * 4); }
+    .seat-ring  { fill: none; stroke: #9bc1ff; stroke-width: 3; --seat: clamp(0, (var(--plug) - .84) / .16, 1);
+                  opacity: calc(var(--seat) * (1 - var(--seat)) * 4);
+                  transform: scale(calc(.55 + var(--seat))); transform-box: fill-box; transform-origin: center; }
+
+    .hero-headline { opacity: calc(1 - var(--building) * .10); }
+    .scroll-hint  { opacity: clamp(0, 1 - var(--p) * 7, 1); }
+    .prog-fill    { width: calc(var(--p) * 100%); }
+    .cap { transition: opacity .15s linear; }
+
+    /* Entrance reveals (JS only) */
+    .js .reveal { opacity: 0; transform: translateY(16px); filter: blur(8px); }
+    .js .reveal.in { opacity: 1; transform: none; filter: none;
+      transition: opacity .7s ease, transform .7s ease, filter .7s ease; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      html.js { --p:1; --plug:1; --flow:1; --building:1; --plugX:0; }  /* show final frame, no scrub */
+      .js .reveal { opacity: 1; transform: none; filter: none; }       /* never trap content hidden */
+      #cablePlug, .cable-core, .dist { will-change: auto; }
     }
   </style>
-
-  <!-- React + ReactDOM + Babel + Framer Motion (CDN, pinned) -->
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/framer-motion@11.11.17/dist/framer-motion.js"></script>
-  <script>
-    window.Motion = window.FramerMotion || window.Motion || window.motion;
-    // Suppress benign Framer Motion / React list-key dev warnings.
-    (function () {
-      var _err = console.error;
-      console.error = function () {
-        var first = arguments[0];
-        if (typeof first === "string" && first.indexOf('unique "key" prop') !== -1) return;
-        return _err.apply(console, arguments);
-      };
-    })();
-  </script>
 </head>
 
-<body class="bg-black text-white">
-  <div id="root"></div>
+<body class="bg-ink text-white antialiased">
 
-  <!-- ===================== Icons ===================== -->
-  <script type="text/babel">
-    function ArrowUpRight({ className }) {
-      return (
-        <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M7 17L17 7" />
-          <path d="M7 7h10v10" />
+  <!-- ============================= NAV ============================= -->
+  <header id="top" class="fixed inset-x-0 top-0 z-50 px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4">
+    <div class="mx-auto max-w-content">
+      <nav class="flex items-center justify-between rounded-full border border-white/10 bg-ink/70 backdrop-blur-md px-3 sm:px-4 py-2.5 shadow-lg shadow-black/20">
+        <!-- Logo -->
+        <a href="#top" class="flex items-center gap-2.5 pl-1" aria-label="JDP Communications home">
+          <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand-600">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="9" width="13" height="6" rx="1.5"/><path d="M16 11h3l2 1-2 1h-3"/><path d="M6 12h0M9 12h0"/>
+            </svg>
+          </span>
+          <span class="leading-none">
+            <span class="font-display italic text-2xl text-white">jdp</span>
+            <span class="eyebrow ml-1 text-[9px] text-white/60 align-middle">Communications</span>
+          </span>
+        </a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-1 text-sm text-white/85">
+          <a href="#top" class="rounded-full px-3 py-2 hover:text-white hover:bg-white/5 transition">Home</a>
+          <a href="#services" class="rounded-full px-3 py-2 hover:text-white hover:bg-white/5 transition">Services</a>
+          <a href="#about" class="rounded-full px-3 py-2 hover:text-white hover:bg-white/5 transition">About Us</a>
+          <a href="#contact" class="rounded-full px-3 py-2 hover:text-white hover:bg-white/5 transition">Contact Us</a>
+        </div>
+
+        <!-- Right -->
+        <div class="flex items-center gap-2">
+          <a href="tel:+19493342852" class="hidden sm:inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-white/85 hover:text-white transition">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            949-334-2852
+          </a>
+          <a href="#contact" class="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-semibold text-ink hover:bg-azure-2 hover:text-ink transition">
+            Request a Quote
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+          </a>
+          <button id="menuBtn" class="md:hidden grid h-9 w-9 place-items-center rounded-full border border-white/10 text-white" aria-label="Open menu" aria-controls="mobilePanel" aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile panel -->
+      <div id="mobilePanel" hidden class="md:hidden mt-2 rounded-2xl border border-white/10 bg-ink/95 backdrop-blur-md p-2 text-white">
+        <a href="#top" class="block rounded-xl px-4 py-3 hover:bg-white/5">Home</a>
+        <a href="#services" class="block rounded-xl px-4 py-3 hover:bg-white/5">Services</a>
+        <a href="#about" class="block rounded-xl px-4 py-3 hover:bg-white/5">About Us</a>
+        <a href="#contact" class="block rounded-xl px-4 py-3 hover:bg-white/5">Contact Us</a>
+        <a href="tel:+19493342852" class="block rounded-xl px-4 py-3 text-azure-2">Call 949-334-2852</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== PINNED HERO ===================== -->
+    <section id="hero" class="relative overflow-clip bg-ink text-white">
+      <!-- Pinned stage -->
+      <div class="sticky top-0 h-[100svh] w-full overflow-hidden">
+        <div class="hero-bg" aria-hidden="true"></div>
+
+        <!-- The scene -->
+        <svg class="hero-svg" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMax meet"
+             role="img" aria-label="A Cat6 cable plugs into a network switch in a rack, energizes, and distributes connectivity through the floors of a building.">
+          <title>From the rack to every room</title>
+          <desc>An RJ45 connector slides into a switch port, current flows through the cable and lights the switches, then branches out to every floor of a building.</desc>
+
+          <defs>
+            <!-- Reusable switch unit (238 x 64): body, port row, LEDs, lit overlay -->
+            <g id="sw">
+              <rect x="0" y="0" width="238" height="64" rx="6" fill="#101a35" stroke="#283a66" stroke-width="1.5"/>
+              <rect x="0" y="0" width="238" height="14" rx="6" fill="#0c1428"/>
+              <!-- status LEDs -->
+              <g class="leds">
+                <circle class="led" cx="19"  cy="9" r="2.6"/><circle class="led" cx="37"  cy="9" r="2.6"/>
+                <circle class="led" cx="55"  cy="9" r="2.6"/><circle class="led" cx="73"  cy="9" r="2.6"/>
+                <circle class="led" cx="91"  cy="9" r="2.6"/><circle class="led" cx="109" cy="9" r="2.6"/>
+                <circle class="led" cx="127" cy="9" r="2.6"/><circle class="led" cx="145" cy="9" r="2.6"/>
+                <circle class="led" cx="163" cy="9" r="2.6"/><circle class="led" cx="181" cy="9" r="2.6"/>
+                <circle class="led" cx="199" cy="9" r="2.6"/><circle class="led" cx="217" cy="9" r="2.6"/>
+              </g>
+              <!-- ports -->
+              <g fill="#0a1226" stroke="#33457a" stroke-width="1">
+                <rect x="12"  y="26" width="14" height="22" rx="2"/><rect x="30"  y="26" width="14" height="22" rx="2"/>
+                <rect x="48"  y="26" width="14" height="22" rx="2"/><rect x="66"  y="26" width="14" height="22" rx="2"/>
+                <rect x="84"  y="26" width="14" height="22" rx="2"/><rect x="102" y="26" width="14" height="22" rx="2"/>
+                <rect x="120" y="26" width="14" height="22" rx="2"/><rect x="138" y="26" width="14" height="22" rx="2"/>
+                <rect x="156" y="26" width="14" height="22" rx="2"/><rect x="174" y="26" width="14" height="22" rx="2"/>
+                <rect x="192" y="26" width="14" height="22" rx="2"/><rect x="210" y="26" width="14" height="22" rx="2"/>
+              </g>
+              <rect class="sw-lit" x="10" y="24" width="220" height="26" rx="3"/>
+            </g>
+          </defs>
+
+          <!-- ===== Distribution lines (drawn first, behind rack/building) ===== -->
+          <g>
+            <path class="dist-base" d="M712 416 C 770 380 800 332 832 304"/>
+            <path class="dist-base" d="M712 416 C 772 412 802 406 832 404"/>
+            <path class="dist-base" d="M712 416 C 772 452 802 498 832 504"/>
+            <path class="dist-base" d="M712 416 C 772 510 800 588 832 606"/>
+            <path class="dist" pathLength="1" style="--d:0"    d="M712 416 C 770 380 800 332 832 304"/>
+            <path class="dist" pathLength="1" style="--d:.14"  d="M712 416 C 772 412 802 406 832 404"/>
+            <path class="dist" pathLength="1" style="--d:.28"  d="M712 416 C 772 452 802 498 832 504"/>
+            <path class="dist" pathLength="1" style="--d:.42"  d="M712 416 C 772 510 800 588 832 606"/>
+          </g>
+
+          <!-- ===== Building cross-section ===== -->
+          <g>
+            <rect x="824" y="250" width="326" height="410" rx="8" fill="#0d1530" stroke="#283a66" stroke-width="2"/>
+            <line x1="824" y1="352" x2="1150" y2="352" stroke="#1b274d" stroke-width="2"/>
+            <line x1="824" y1="454" x2="1150" y2="454" stroke="#1b274d" stroke-width="2"/>
+            <line x1="824" y1="556" x2="1150" y2="556" stroke="#1b274d" stroke-width="2"/>
+            <!-- floor entry nodes -->
+            <circle class="node" style="--d:0"   cx="832" cy="304" r="5"/>
+            <circle class="node" style="--d:.14" cx="832" cy="404" r="5"/>
+            <circle class="node" style="--d:.28" cx="832" cy="504" r="5"/>
+            <circle class="node" style="--d:.42" cx="832" cy="606" r="5"/>
+            <!-- windows / rooms that light as connectivity arrives -->
+            <g class="floor">
+              <rect class="room" style="--d:0" x="876" y="286" width="56" height="34" rx="3"/>
+              <rect class="room" style="--d:0" x="956" y="286" width="56" height="34" rx="3"/>
+              <rect class="room" style="--d:0" x="1036" y="286" width="56" height="34" rx="3"/>
+            </g>
+            <g class="floor">
+              <rect class="room" style="--d:.14" x="876" y="388" width="56" height="34" rx="3"/>
+              <rect class="room" style="--d:.14" x="956" y="388" width="56" height="34" rx="3"/>
+              <rect class="room" style="--d:.14" x="1036" y="388" width="56" height="34" rx="3"/>
+            </g>
+            <g class="floor">
+              <rect class="room" style="--d:.28" x="876" y="490" width="56" height="34" rx="3"/>
+              <rect class="room" style="--d:.28" x="956" y="490" width="56" height="34" rx="3"/>
+              <rect class="room" style="--d:.28" x="1036" y="490" width="56" height="34" rx="3"/>
+            </g>
+            <g class="floor">
+              <rect class="room" style="--d:.42" x="876" y="592" width="56" height="34" rx="3"/>
+              <rect class="room" style="--d:.42" x="956" y="592" width="56" height="34" rx="3"/>
+              <rect class="room" style="--d:.42" x="1036" y="592" width="56" height="34" rx="3"/>
+            </g>
+            <!-- door -->
+            <rect x="978" y="618" width="40" height="42" rx="2" fill="#0a1226" stroke="#283a66" stroke-width="1.5"/>
+          </g>
+
+          <!-- ===== Rack ===== -->
+          <g>
+            <rect x="430" y="250" width="282" height="410" rx="10" fill="#0c142c" stroke="#283a66" stroke-width="2"/>
+            <rect x="436" y="256" width="8" height="398" rx="3" fill="#16224a"/>
+            <rect x="698" y="256" width="8" height="398" rx="3" fill="#16224a"/>
+            <!-- switches -->
+            <use href="#sw" x="452" y="268" style="--d:0"/>
+            <use href="#sw" x="452" y="346" style="--d:.10"/>
+            <use href="#sw" x="452" y="424" style="--d:.20"/>
+            <use href="#sw" x="452" y="502" style="--d:.30"/>
+            <!-- patch panel -->
+            <rect x="452" y="580" width="238" height="64" rx="6" fill="#0e1733" stroke="#283a66" stroke-width="1.5"/>
+            <g stroke="#33457a" stroke-width="1" fill="#0a1226">
+              <rect x="466" y="600" width="20" height="24" rx="2"/><rect x="494" y="600" width="20" height="24" rx="2"/>
+              <rect x="522" y="600" width="20" height="24" rx="2"/><rect x="550" y="600" width="20" height="24" rx="2"/>
+              <rect x="578" y="600" width="20" height="24" rx="2"/><rect x="606" y="600" width="20" height="24" rx="2"/>
+              <rect x="634" y="600" width="20" height="24" rx="2"/><rect x="662" y="600" width="20" height="24" rx="2"/>
+            </g>
+            <!-- rack output jack (feeds the building) -->
+            <circle class="out-node" cx="712" cy="416" r="5.5"/>
+          </g>
+
+          <!-- ===== Cable + RJ45 connector (slides in via --plugX) ===== -->
+          <g id="cablePlug">
+            <path class="cable-jacket" d="M -80 742 C 150 690 250 470 318 396 C 352 358 372 332 398 320"/>
+            <path class="cable-core"   pathLength="1" d="M -80 742 C 150 690 250 470 318 396 C 352 358 372 332 398 320"/>
+            <!-- connector body, seated tip at x=464 -->
+            <g>
+              <rect x="396" y="290" width="70" height="34" rx="4" fill="#1b2a54" stroke="#3a4d86" stroke-width="1.5"/>
+              <rect x="408" y="282" width="34" height="10" rx="2" fill="#1b2a54" stroke="#3a4d86" stroke-width="1.5"/>
+              <g class="contacts" stroke-linecap="round">
+                <line x1="450" y1="296" x2="450" y2="318"/><line x1="455" y1="296" x2="455" y2="318"/>
+                <line x1="460" y1="296" x2="460" y2="318"/>
+              </g>
+            </g>
+          </g>
+
+          <!-- ===== Seat flash + click ring at the port ===== -->
+          <g>
+            <rect class="seat-flash" x="446" y="286" width="34" height="32" rx="4"/>
+            <circle class="seat-ring" cx="464" cy="304" r="20"/>
+          </g>
         </svg>
-      );
-    }
 
-    function Play({ className }) {
-      return (
-        <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <polygon points="6 4 20 12 6 20 6 4" />
-        </svg>
-      );
-    }
+        <!-- Left scrim keeps the headline crisp over the scene -->
+        <div class="hero-scrim" aria-hidden="true"></div>
 
-    function ClockIcon({ className }) {
-      return (
-        <svg className={className} width="28" height="28" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 7v5l3.5 2" />
-        </svg>
-      );
-    }
-
-    function GlobeIcon({ className }) {
-      return (
-        <svg className={className} width="28" height="28" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="9" />
-          <path d="M3 12h18" />
-          <path d="M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3z" />
-        </svg>
-      );
-    }
-
-    window.ArrowUpRight = ArrowUpRight;
-    window.Play = Play;
-    window.ClockIcon = ClockIcon;
-    window.GlobeIcon = GlobeIcon;
-  </script>
-
-  <!-- ===================== FadingVideo ===================== -->
-  <script type="text/babel">
-    const { useRef, useEffect } = React;
-
-    function FadingVideo({ src, className, style }) {
-      const videoRef = useRef(null);
-      const rafRef = useRef(null);
-      const fadingOutRef = useRef(false);
-
-      const FADE_MS = 500;
-      const FADE_OUT_LEAD = 0.55;
-
-      useEffect(() => {
-        const video = videoRef.current;
-        if (!video) return;
-
-        const fadeTo = (target, duration) => {
-          if (rafRef.current) cancelAnimationFrame(rafRef.current);
-          const start = parseFloat(video.style.opacity) || 0;
-          const startTime = performance.now();
-          const step = (now) => {
-            const t = Math.min((now - startTime) / duration, 1);
-            video.style.opacity = String(start + (target - start) * t);
-            if (t < 1) {
-              rafRef.current = requestAnimationFrame(step);
-            }
-          };
-          rafRef.current = requestAnimationFrame(step);
-        };
-
-        const onLoadedData = () => {
-          video.style.opacity = "0";
-          const p = video.play();
-          if (p && p.catch) p.catch(() => {});
-          fadeTo(1, FADE_MS);
-        };
-
-        const onTimeUpdate = () => {
-          if (fadingOutRef.current || !video.duration) return;
-          const remaining = video.duration - video.currentTime;
-          if (remaining <= FADE_OUT_LEAD && remaining > 0) {
-            fadingOutRef.current = true;
-            fadeTo(0, FADE_MS);
-          }
-        };
-
-        const onEnded = () => {
-          video.style.opacity = "0";
-          setTimeout(() => {
-            video.currentTime = 0;
-            const p = video.play();
-            if (p && p.catch) p.catch(() => {});
-            fadingOutRef.current = false;
-            fadeTo(1, FADE_MS);
-          }, 100);
-        };
-
-        video.addEventListener("loadeddata", onLoadedData);
-        video.addEventListener("timeupdate", onTimeUpdate);
-        video.addEventListener("ended", onEnded);
-
-        return () => {
-          if (rafRef.current) cancelAnimationFrame(rafRef.current);
-          video.removeEventListener("loadeddata", onLoadedData);
-          video.removeEventListener("timeupdate", onTimeUpdate);
-          video.removeEventListener("ended", onEnded);
-        };
-      }, [src]);
-
-      return (
-        <video
-          ref={videoRef}
-          src={src}
-          className={className}
-          style={{ opacity: 0, ...style }}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-        />
-      );
-    }
-
-    window.FadingVideo = FadingVideo;
-  </script>
-
-  <!-- ===================== BlurText ===================== -->
-  <script type="text/babel">
-    const { useRef: useRefBT, useEffect: useEffectBT, useState: useStateBT } = React;
-
-    function BlurText({ text, className }) {
-      const motion = window.Motion.motion;
-      const ref = useRefBT(null);
-      const [inView, setInView] = useStateBT(false);
-
-      useEffectBT(() => {
-        const el = ref.current;
-        if (!el) return;
-        const observer = new IntersectionObserver(
-          (entries) => {
-            if (entries[0].isIntersecting) {
-              setInView(true);
-              observer.disconnect();
-            }
-          },
-          { threshold: 0.1 }
-        );
-        observer.observe(el);
-        return () => observer.disconnect();
-      }, []);
-
-      const words = text.split(" ");
-
-      return (
-        <p
-          ref={ref}
-          className={className}
-          style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", rowGap: "0.1em" }}
-        >
-          {words.map((word, i) => (
-            <motion.span
-              key={i}
-              style={{ display: "inline-block", marginRight: "0.28em" }}
-              initial={{ filter: "blur(10px)", opacity: 0, y: 50 }}
-              animate={
-                inView
-                  ? {
-                      filter: ["blur(10px)", "blur(5px)", "blur(0px)"],
-                      opacity: [0, 0.5, 1],
-                      y: [50, -5, 0],
-                    }
-                  : {}
-              }
-              transition={{
-                duration: 0.7,
-                times: [0, 0.5, 1],
-                ease: "easeOut",
-                delay: (i * 100) / 1000,
-              }}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </p>
-      );
-    }
-
-    window.BlurText = BlurText;
-  </script>
-
-  <!-- ===================== Navbar ===================== -->
-  <script type="text/babel">
-    function Navbar() {
-      const ArrowUpRight = window.ArrowUpRight;
-      const links = ["Home", "Services", "Solutions", "Projects", "About"];
-
-      return (
-        <nav className="fixed top-4 left-0 right-0 z-50 px-8 lg:px-16">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <div className="liquid-glass w-12 h-12 rounded-full flex items-center justify-center">
-              <span className="font-heading italic text-white text-2xl leading-none lowercase">j</span>
-            </div>
-
-            {/* Center pill (desktop only) */}
-            <div className="hidden lg:flex items-center liquid-glass rounded-full px-1.5 py-1.5">
-              {links.map((link) => (
-                <a
-                  key={link}
-                  href="#"
-                  className="px-3 py-2 text-sm font-medium text-white/90 font-body"
-                >
-                  {link}
-                </a>
-              ))}
-              <button className="ml-1 inline-flex items-center gap-1 bg-white text-black rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap font-body">
-                Get a Quote
-                <ArrowUpRight className="h-4 w-4" />
-              </button>
-            </div>
-
-            {/* Right spacer (balances logo) */}
-            <div className="w-12 h-12 invisible" />
-          </div>
-        </nav>
-      );
-    }
-
-    window.Navbar = Navbar;
-  </script>
-
-  <!-- ===================== Hero ===================== -->
-  <script type="text/babel">
-    function Hero() {
-      const motion = window.Motion.motion;
-      const { FadingVideo, Navbar, BlurText, ArrowUpRight, Play, ClockIcon, GlobeIcon } = window;
-
-      const entrance = (delay) => ({
-        initial: { filter: "blur(10px)", opacity: 0, y: 20 },
-        animate: { filter: "blur(0px)", opacity: 1, y: 0 },
-        transition: { duration: 0.6, ease: "easeOut", delay },
-      });
-
-      const stats = [
-        { Icon: ClockIcon, value: "15+ Yrs", label: "Certified Install Experience" },
-        { Icon: GlobeIcon, value: "5M+ Ft", label: "Cat6 & Fiber Deployed" },
-      ];
-
-      const partners = ["Panduit", "CommScope", "Leviton", "Corning", "Belden"];
-
-      return (
-        <section className="relative min-h-screen w-full overflow-hidden bg-black">
-          <FadingVideo
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50.mp4"
-            className="absolute left-1/2 top-0 -translate-x-1/2 object-cover object-top z-0"
-            style={{ width: "120%", height: "120%" }}
-          />
-
-          <div className="relative z-10 flex flex-col min-h-screen">
-            <Navbar />
-
-            {/* Hero content */}
-            <div className="flex-1 flex flex-col items-center justify-center text-center pt-24 px-4">
-              {/* Badge */}
-              <motion.div {...entrance(0.4)}>
-                <div className="liquid-glass rounded-full inline-flex items-center gap-2 pr-3 py-1 pl-1">
-                  <span className="bg-white text-black rounded-full px-3 py-1 text-xs font-semibold font-body">
-                    New
-                  </span>
-                  <span className="text-sm text-white/90 font-body">
-                    Now booking enterprise data center buildouts for 2026
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* Headline */}
-              <div className="mt-6">
-                <BlurText
-                  text="Structured Cabling And Fiber Built To Last"
-                  className="text-6xl md:text-7xl lg:text-[5.5rem] font-heading italic text-white leading-[0.8] max-w-2xl justify-center tracking-[-4px]"
-                />
-              </div>
-
-              {/* Subheading */}
-              <motion.p
-                {...entrance(0.8)}
-                className="mt-4 text-sm md:text-base text-white max-w-2xl font-body font-light leading-tight"
-              >
-                From server rooms and data centers to Cat6 and fiber backbones, we design and
-                install low-voltage infrastructure that&rsquo;s clean, certified, and built to
-                scale&mdash;on time and to spec.
-              </motion.p>
-
-              {/* CTAs */}
-              <motion.div {...entrance(1.1)} className="flex items-center gap-6 mt-6">
-                <button className="liquid-glass-strong rounded-full px-5 py-2.5 text-sm font-medium text-white inline-flex items-center gap-2">
+        <!-- ===== Copy overlay ===== -->
+        <div class="pointer-events-none absolute inset-0">
+          <div class="mx-auto flex h-full max-w-content flex-col px-5 sm:px-8 pt-[16svh] sm:pt-[18svh]">
+            <div class="max-w-xl">
+              <p class="eyebrow text-azure-2 reveal">Structured Cabling &middot; Network Infrastructure</p>
+              <h1 class="hero-headline font-display text-[2.85rem] leading-[0.95] sm:text-6xl lg:text-7xl mt-4 reveal">
+                Reliable networks start with the right cabling partner.
+              </h1>
+              <p class="mt-5 max-w-md text-base sm:text-lg text-white/75 font-light reveal">
+                High-performance network cabling for voice, data, and video — for businesses of all sizes.
+              </p>
+              <div class="pointer-events-auto mt-7 flex flex-wrap items-center gap-3 reveal">
+                <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-azure px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition">
                   Request a Quote
-                  <ArrowUpRight className="h-5 w-5" />
-                </button>
-                <button className="inline-flex items-center gap-2 text-sm font-medium text-white">
-                  See Our Work
-                  <Play className="h-4 w-4" />
-                </button>
-              </motion.div>
-
-              {/* Stats */}
-              <motion.div {...entrance(1.3)} className="flex items-stretch gap-4 mt-8">
-                {stats.map(({ Icon, value, label }) => (
-                  <div
-                    key={label}
-                    className="liquid-glass p-5 w-[220px] rounded-[1.25rem] flex flex-col items-start text-left"
-                  >
-                    <Icon className="text-white" />
-                    <div className="mt-auto pt-6">
-                      <div className="font-heading italic text-white text-4xl tracking-[-1px] leading-none">
-                        {value}
-                      </div>
-                      <div className="text-xs text-white font-body font-light mt-2">{label}</div>
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* Partners */}
-            <motion.div {...entrance(1.4)} className="flex flex-col items-center gap-4 pb-8">
-              <div className="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white">
-                Trusted by enterprise, healthcare &amp; data center clients
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </a>
+                <a href="#services" class="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white hover:bg-white/5 transition">
+                  Explore Services
+                </a>
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-12 md:gap-16">
-                {partners.map((name) => (
-                  <span
-                    key={name}
-                    className="font-heading italic text-white text-2xl md:text-3xl tracking-tight"
-                  >
-                    {name}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      );
-    }
-
-    window.Hero = Hero;
-  </script>
-
-  <!-- ===================== Capabilities ===================== -->
-  <script type="text/babel">
-    function Capabilities() {
-      const { FadingVideo } = window;
-
-      const cards = [
-        {
-          // dns (server racks)
-          iconPath:
-            "M20 13H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-6c0-.55-.45-1-1-1zm-13 6.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM20 3H4c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM7 9.5c-.83 0-1.5-.67-1.5-1.5S6.17 6.5 7 6.5 8.5 7.17 8.5 8 7.83 9.5 7 9.5z",
-          tags: ["Hot/Cold Aisle", "Cable Trays", "Rack & Stack", "Cooling Ready"],
-          title: "Data Centers",
-          body:
-            "We build server rooms and data centers end to end — racks, power, pathways, and cable management engineered for uptime and easy scaling.",
-        },
-        {
-          // settings_ethernet (cabling)
-          iconPath:
-            "M7.77 6.76 6.23 5.48.82 12l5.41 6.52 1.54-1.28L3.42 12l4.35-5.24zM7 13h2v-2H7v2zm10-2h-2v2h2v-2zm-6 2h2v-2h-2v2zm12.18-1L17.77 5.48l-1.54 1.28L20.58 12l-4.35 5.24 1.54 1.28L23.18 12z",
-          tags: ["Cat6 & Cat6A", "Certified Testing", "Patch Panels", "Clean Dressing"],
-          title: "Structured Cabling",
-          body:
-            "Certified Cat6 and Cat6A runs, terminations, and patching. Every drop is tested, labeled, and dressed for clean, reliable performance.",
-        },
-        {
-          // device_hub (fiber / network)
-          iconPath:
-            "M17 16l-4-4V8.82C14.16 8.4 15 7.3 15 6c0-1.66-1.34-3-3-3S9 4.34 9 6c0 1.3.84 2.4 2 2.82V12l-4 4H3v5h5v-3.05l4-4.2 4 4.2V21h5v-5h-4z",
-          tags: ["Single & Multimode", "Fusion Splicing", "OTDR Tested", "Riser Rated"],
-          title: "Fiber Backbones",
-          body:
-            "Single-mode and multimode fiber backbones, fusion spliced and OTDR-tested to link floors, buildings, and campuses at full speed.",
-        },
-      ];
-
-      return (
-        <section className="relative min-h-screen w-full overflow-hidden bg-black">
-          <FadingVideo
-            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4"
-            className="absolute inset-0 w-full h-full object-cover z-0"
-          />
-
-          <div className="relative z-10 px-8 md:px-16 lg:px-20 pt-24 pb-10 flex flex-col min-h-screen">
-            {/* Header */}
-            <div className="mb-auto">
-              <div className="text-sm font-body text-white/80 mb-6">// Capabilities</div>
-              <h2 className="font-heading italic text-white text-6xl md:text-7xl lg:text-[6rem] leading-[0.9] tracking-[-3px]">
-                Infrastructure
-                <br />
-                done right
-              </h2>
-            </div>
-
-            {/* Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-              {cards.map((card) => (
-                <div
-                  key={card.title}
-                  className="liquid-glass rounded-[1.25rem] p-6 min-h-[360px] flex flex-col"
-                >
-                  {/* Top row */}
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="liquid-glass w-11 h-11 rounded-[0.75rem] flex items-center justify-center shrink-0">
-                      <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                        <path d={card.iconPath} />
-                      </svg>
-                    </div>
-                    <div className="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
-                      {card.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Spacer */}
-                  <div className="flex-1" />
-
-                  {/* Bottom */}
-                  <div className="mt-6">
-                    <h3 className="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none">
-                      {card.title}
-                    </h3>
-                    <p className="mt-3 text-sm text-white/90 font-body font-light leading-snug max-w-[32ch]">
-                      {card.body}
-                    </p>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
-        </section>
-      );
-    }
 
-    window.Capabilities = Capabilities;
-  </script>
+          <!-- phase caption -->
+          <div class="absolute bottom-16 inset-x-0">
+            <div class="mx-auto max-w-content px-5 sm:px-8">
+              <div class="eyebrow text-white/60 h-4 relative">
+                <span class="cap absolute" style="opacity: clamp(0, (0.40 - var(--p)) / 0.10, 1)">01 — Plug in</span>
+                <span class="cap absolute" style="opacity: min(clamp(0,(var(--p) - 0.32)/0.08,1), clamp(0,(0.76 - var(--p))/0.08,1))">02 — Energize</span>
+                <span class="cap absolute" style="opacity: clamp(0, (var(--p) - 0.62)/0.08, 1)">03 — Distribute</span>
+              </div>
+            </div>
+          </div>
 
-  <!-- ===================== App + mount ===================== -->
-  <script type="text/babel">
-    function App() {
-      const { Hero, Capabilities } = window;
-      return (
-        <React.Fragment>
-          <Hero />
-          <Capabilities />
-        </React.Fragment>
-      );
-    }
+          <!-- progress rail -->
+          <div class="absolute bottom-8 inset-x-0">
+            <div class="mx-auto max-w-content px-5 sm:px-8">
+              <div class="h-px w-full bg-white/12">
+                <div class="prog-fill h-px bg-azure-2" style="box-shadow:0 0 8px rgba(122,166,255,.9)"></div>
+              </div>
+            </div>
+          </div>
 
-    window.App = App;
+          <!-- scroll hint -->
+          <div class="scroll-hint absolute bottom-3 left-1/2 -translate-x-1/2 text-white/55">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          </div>
+        </div>
+      </div>
 
-    const root = ReactDOM.createRoot(document.getElementById("root"));
-    root.render(<App />);
+      <!-- Scroll runway: its height is how long the scene stays pinned -->
+      <div class="h-[300vh] max-md:h-[180vh]" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section id="services" class="bg-mist text-ink">
+      <div class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-28">
+        <div class="max-w-3xl reveal">
+          <p class="eyebrow text-brand-600">// Services</p>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 leading-[1.02]">What we design &amp; install</h2>
+          <p class="mt-5 text-lg text-ink/70 font-light">
+            We design and install high-performance network cabling systems that support voice, data, and video for
+            businesses of all sizes. From structured cabling and equipment racks to testing and troubleshooting, our
+            team delivers clean, scalable, and standards-compliant solutions built for long-term performance.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Card 1 -->
+          <article class="reveal flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink/5 shadow-sm">
+            <div class="flex items-center gap-3 bg-brand-600 px-6 py-5 text-white">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="7" cy="7" r=".5"/></svg>
+              <h3 class="font-semibold text-lg leading-tight">Structured Network Cabling</h3>
+            </div>
+            <p class="px-6 py-5 text-ink/70">Design and installation of high-speed network cabling systems to support voice, video, and data applications with reliable, scalable performance.</p>
+          </article>
+          <!-- Card 2 -->
+          <article class="reveal flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink/5 shadow-sm">
+            <div class="flex items-center gap-3 bg-brand-600 px-6 py-5 text-white">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="7" rx="1"/><rect x="4" y="14" width="16" height="7" rx="1"/><path d="M8 6.5h0M8 17.5h0"/></svg>
+              <h3 class="font-semibold text-lg leading-tight">Communications Room</h3>
+            </div>
+            <p class="px-6 py-5 text-ink/70">Installation of communication cabinets, equipment racks, backup power systems, and distributed power solutions to support secure, organized, and reliable network infrastructure.</p>
+          </article>
+          <!-- Card 3 -->
+          <article class="reveal flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink/5 shadow-sm">
+            <div class="flex items-center gap-3 bg-brand-600 px-6 py-5 text-white">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 1 5.4-5.4z"/></svg>
+              <h3 class="font-semibold text-lg leading-tight">Network Cable Repairs, Testing, &amp; Maintenance</h3>
+            </div>
+            <p class="px-6 py-5 text-ink/70">We perform comprehensive network cable testing to identify and resolve slow speeds, intermittent dropouts, and connectivity issues. Our diagnostics ensure your network operates reliably and at peak performance.</p>
+          </article>
+          <!-- Card 4 -->
+          <article class="reveal flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink/5 shadow-sm">
+            <div class="flex items-center gap-3 bg-brand-600 px-6 py-5 text-white">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h4l2-3 4 6 2-3h4"/></svg>
+              <h3 class="font-semibold text-lg leading-tight">Traditional Telecom &amp; ISP Circuits</h3>
+            </div>
+            <div class="px-6 py-5 text-ink/70">
+              <p>Installation of all MPOE circuits:</p>
+              <ul class="mt-3 flex flex-wrap gap-2">
+                <li class="rounded-full bg-mist px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-brand-600/15">POTS</li>
+                <li class="rounded-full bg-mist px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-brand-600/15">DSL</li>
+                <li class="rounded-full bg-mist px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-brand-600/15">T1</li>
+                <li class="rounded-full bg-mist px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-brand-600/15">T3</li>
+                <li class="rounded-full bg-mist px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-brand-600/15">ETHERNET</li>
+                <li class="rounded-full bg-mist px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-brand-600/15">COAX</li>
+                <li class="rounded-full bg-mist px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-brand-600/15">Fiber</li>
+                <li class="rounded-full bg-mist px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-brand-600/15">EOC</li>
+              </ul>
+            </div>
+          </article>
+          <!-- Card 5 -->
+          <article class="reveal flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-ink/5 shadow-sm lg:col-span-2">
+            <div class="flex items-center gap-3 bg-brand-600 px-6 py-5 text-white">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/><path d="M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"/></svg>
+              <h3 class="font-semibold text-lg leading-tight">Wireless Networks, CCTV, &amp; Access Control</h3>
+            </div>
+            <p class="px-6 py-5 text-ink/70 max-w-2xl">We provide professional installation of network cabling and associated equipment to ensure reliable, high-performance connectivity. Our structured systems are clean, organized, and built to scale with your business.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA BAND ===================== -->
+    <section class="bg-brand-600 text-white">
+      <div class="mx-auto max-w-content px-5 sm:px-8 py-14 sm:py-16 flex flex-col items-center text-center gap-5 reveal">
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl leading-tight">Let&rsquo;s plan your install.</h2>
+        <p class="max-w-xl text-white/80 font-light">Tell us about your space and we&rsquo;ll scope the cabling, racks, and drops — clean, labeled, and tested.</p>
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-brand-700 hover:bg-azure-2 hover:text-ink transition">
+          Request a Quote
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT / WHY US ===================== -->
+    <section id="about" class="bg-ink text-white">
+      <div class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-28 grid gap-14 lg:grid-cols-2 lg:items-center">
+        <div class="reveal">
+          <p class="eyebrow text-azure-2">// Why JDP</p>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 leading-[1.02]">Built right, the first time.</h2>
+          <p class="mt-6 text-lg text-white/70 font-light max-w-xl">
+            Whether you&rsquo;re upgrading an existing network or building from the ground up, we provide the expertise,
+            organization, and reliability your operation depends on.
+          </p>
+        </div>
+        <div class="reveal grid grid-cols-2 gap-4">
+          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+            <div class="font-display text-5xl text-azure-2 leading-none">25+</div>
+            <div class="mt-2 text-sm text-white/65">Years in business</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+            <div class="font-display text-4xl text-azure-2 leading-none">Licensed</div>
+            <div class="mt-2 text-sm text-white/65">Low-voltage contractor<br/>CSLB #1061737</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+            <div class="font-display text-3xl text-azure-2 leading-none">Voice · Data · Video</div>
+            <div class="mt-2 text-sm text-white/65">For businesses of all sizes</div>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+            <div class="font-display text-3xl text-azure-2 leading-none">Orange County</div>
+            <div class="mt-2 text-sm text-white/65">&amp; Southern California</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PAST COLLABORATIONS ===================== -->
+    <section class="bg-mist text-ink">
+      <div class="mx-auto max-w-content px-5 sm:px-8 py-16 sm:py-20 text-center reveal">
+        <p class="eyebrow text-brand-600">// Past Collaborations</p>
+        <h2 class="font-display text-3xl sm:text-4xl mt-3">Trusted on the job</h2>
+        <ul class="mt-10 flex flex-wrap items-center justify-center gap-x-12 gap-y-6 text-ink/45">
+          <li class="font-semibold tracking-tight text-lg sm:text-xl hover:text-brand-600 transition">Steadfast Companies</li>
+          <li class="font-semibold tracking-tight text-lg sm:text-xl hover:text-brand-600 transition">SEIU Local 721</li>
+          <li class="font-semibold tracking-tight text-lg sm:text-xl hover:text-brand-600 transition">GIGA</li>
+          <li class="font-semibold tracking-tight text-lg sm:text-xl hover:text-brand-600 transition">IRT</li>
+          <li class="font-semibold tracking-tight text-lg sm:text-xl hover:text-brand-600 transition">Epicuren Discovery</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="bg-ink text-white">
+      <div class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-28 grid gap-12 lg:grid-cols-2">
+        <div class="reveal">
+          <p class="eyebrow text-azure-2">// Contact</p>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 leading-[1.02]">Request a quote</h2>
+          <p class="mt-5 text-lg text-white/70 font-light max-w-md">Call us or send a few details about your project and we&rsquo;ll get right back to you.</p>
+
+          <a href="tel:+19493342852" class="mt-8 inline-flex items-center gap-3 group">
+            <span class="grid h-12 w-12 place-items-center rounded-full bg-azure/15 text-azure-2 group-hover:bg-azure/25 transition">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <span>
+              <span class="block text-2xl font-display">949-334-2852</span>
+              <span class="eyebrow text-white/50 text-[10px]">Call or text</span>
+            </span>
+          </a>
+        </div>
+
+        <form id="quoteForm" class="reveal rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8 space-y-4" novalidate>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <label class="block">
+              <span class="text-sm text-white/70">Name</span>
+              <input name="name" type="text" required autocomplete="name" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-azure-2" placeholder="Your name" />
+            </label>
+            <label class="block">
+              <span class="text-sm text-white/70">Company</span>
+              <input name="company" type="text" autocomplete="organization" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-azure-2" placeholder="Company (optional)" />
+            </label>
+          </div>
+          <label class="block">
+            <span class="text-sm text-white/70">Phone</span>
+            <input name="phone" type="tel" required autocomplete="tel" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-azure-2" placeholder="(xxx) xxx-xxxx" />
+          </label>
+          <label class="block">
+            <span class="text-sm text-white/70">Project details</span>
+            <textarea name="message" rows="4" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-azure-2" placeholder="Cabling, racks, drops, square footage, timeline…"></textarea>
+          </label>
+          <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-azure px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition">
+            Send request
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <p id="formNote" hidden class="text-sm text-azure-2">Thanks — we&rsquo;ll be in touch. For anything urgent, call <a class="underline" href="tel:+19493342852">949-334-2852</a>.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="bg-night text-white/70">
+    <div class="mx-auto max-w-content px-5 sm:px-8 py-14">
+      <div class="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand-600">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="13" height="6" rx="1.5"/><path d="M16 11h3l2 1-2 1h-3"/></svg>
+            </span>
+            <span class="font-display italic text-2xl text-white">jdp <span class="eyebrow text-[9px] text-white/50 align-middle">Communications</span></span>
+          </div>
+          <p class="mt-4 max-w-xs text-sm">Network Infrastructure Cabling Solutions — voice, data, and video for businesses of all sizes.</p>
+          <a href="tel:+19493342852" class="mt-4 inline-block font-display text-xl text-white hover:text-azure-2 transition">949-334-2852</a>
+        </div>
+
+        <nav class="flex flex-col gap-2 text-sm" aria-label="Footer">
+          <a href="#top" class="hover:text-white transition">Home</a>
+          <a href="#services" class="hover:text-white transition">Services</a>
+          <a href="#about" class="hover:text-white transition">About Us</a>
+          <a href="#contact" class="hover:text-white transition">Contact Us</a>
+        </nav>
+      </div>
+
+      <div class="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs sm:flex-row sm:items-center sm:justify-between">
+        <p class="uppercase tracking-wide">Copyright &copy; 2026 JDPCommunications — All Rights Reserved.</p>
+        <div class="flex gap-5">
+          <a href="#" class="hover:text-white transition">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition">Terms and Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== SCROLL ENGINE ===================== -->
+  <script>
+    (function () {
+      var hero = document.getElementById("hero");
+      var root = document.documentElement;
+      var rm = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+      function sub(p, a, b) { return clamp01((p - a) / (b - a)); }
+      function easeOutBack(t) { var s = 1.70158, u = t - 1; return 1 + (s + 1) * u * u * u + s * u * u; }
+
+      function setVars(p) {
+        var plug = sub(p, 0, 0.35), flow = sub(p, 0.35, 0.72), building = sub(p, 0.55, 0.95);
+        root.style.setProperty("--p", p.toFixed(4));
+        root.style.setProperty("--plug", plug.toFixed(4));
+        root.style.setProperty("--flow", flow.toFixed(4));
+        root.style.setProperty("--building", building.toFixed(4));
+        root.style.setProperty("--plugX", (-150 * (1 - easeOutBack(plug))).toFixed(2));
+      }
+
+      // Mobile menu (independent of the scroll engine)
+      var mb = document.getElementById("menuBtn"), mp = document.getElementById("mobilePanel");
+      if (mb && mp) {
+        mb.addEventListener("click", function () {
+          var open = !mp.hasAttribute("hidden");
+          if (open) { mp.setAttribute("hidden", ""); mb.setAttribute("aria-expanded", "false"); }
+          else { mp.removeAttribute("hidden"); mb.setAttribute("aria-expanded", "true"); }
+        });
+        mp.querySelectorAll("a").forEach(function (a) {
+          a.addEventListener("click", function () { mp.setAttribute("hidden", ""); mb.setAttribute("aria-expanded", "false"); });
+        });
+      }
+
+      // Contact form (front-end only — no backend wired)
+      var f = document.getElementById("quoteForm");
+      if (f) {
+        f.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          if (!f.checkValidity()) { f.reportValidity && f.reportValidity(); return; }
+          var note = document.getElementById("formNote");
+          if (note) note.hidden = false;
+          f.reset();
+        });
+      }
+
+      if (!hero) return;
+
+      // Reduced motion: hold the final lit frame, no scrubbing.
+      if (rm.matches) { setVars(1); return; }
+
+      var ticking = false;
+      function render() {
+        var rect = hero.getBoundingClientRect();
+        var total = rect.height - window.innerHeight;
+        var p = total > 0 ? clamp01(-rect.top / total) : (rect.top <= 0 ? 1 : 0);
+        setVars(p);
+        ticking = false;
+      }
+      function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(render); } }
+      addEventListener("scroll", onScroll, { passive: true });
+      addEventListener("resize", onScroll, { passive: true });
+      render();
+
+      // Entrance reveals
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+        }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+        document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+      } else {
+        document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+      }
+    })();
   </script>
 </body>
 </html>
