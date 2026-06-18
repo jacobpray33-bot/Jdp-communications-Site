@@ -125,7 +125,7 @@
     <div class="mx-auto max-w-content">
       <nav class="flex items-center justify-between rounded-full border border-white/10 bg-ink/70 backdrop-blur-md px-3 sm:px-5 py-2.5 shadow-lg shadow-black/30">
         <a href="#top" class="flex items-center" aria-label="JDP Communications home">
-          <img src="assets/jdp-logo.svg" alt="JDP Communications" class="h-9 w-auto" onerror="if(this.src.indexOf('jdp-logo.svg')>-1){this.src='assets/jdp-logo.png'}else{this.style.display='none';this.nextElementSibling.style.display='block'}" />
+          <img src="assets/jdp-logo.png" alt="JDP Communications" class="h-9 w-auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <svg class="h-9 w-auto" style="display:none" viewBox="0 0 236 152" role="img" aria-label="jdp Communications"><use href="#jdpLogo"/></svg>
         </a>
 
@@ -197,7 +197,7 @@
         <!-- Right visual: real photo when present, else a clean static graphic -->
         <div class="lg:col-span-5 reveal">
           <div class="relative aspect-[4/5] sm:aspect-square lg:aspect-[4/5] overflow-hidden rounded-3xl border border-white/10">
-            <img src="assets/hero-rj45.jpg" alt="Cat6 RJ45 connector and network switch" class="absolute inset-0 h-full w-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+            <img src="assets/hero-rj45.jpg" alt="JDP Communications server rack with structured red Cat6 cabling and patch panels" class="absolute inset-0 h-full w-full object-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
             <div style="display:none" class="absolute inset-0 grid-bg bg-gradient-to-br from-brand-700/50 to-ink-2">
               <svg viewBox="0 0 400 500" class="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <defs>
@@ -235,7 +235,6 @@
 
         <svg class="feat-svg feat-illus" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid meet"
              role="img" aria-label="A close-up RJ45 connector plugs into a server rack and blue data flows through the cable into the servers.">
-          <title>RJ45 plugging into a server, energizing</title>
           <desc>An up-close RJ45 connector slides into a server port; on contact, blue energy and data stream through the cable into the server and its drives light up.</desc>
           <defs>
             <linearGradient id="boot" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b6bb0"/><stop offset="1" stop-color="#143a66"/></linearGradient>
@@ -565,19 +564,25 @@
           </a>
         </div>
 
-        <form id="quoteForm" class="reveal rounded-2xl border border-white/10 bg-white/[0.03] p-6 sm:p-8 space-y-4" novalidate>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <label class="block"><span class="text-sm text-white/70">Name</span><input name="name" type="text" required autocomplete="name" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Your name" /></label>
-            <label class="block"><span class="text-sm text-white/70">Company</span><input name="company" type="text" autocomplete="organization" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Company (optional)" /></label>
-          </div>
-          <label class="block"><span class="text-sm text-white/70">Phone</span><input name="phone" type="tel" required autocomplete="tel" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="(xxx) xxx xxxx" /></label>
-          <label class="block"><span class="text-sm text-white/70">Project details</span><textarea name="message" rows="4" class="mt-1 w-full rounded-lg border border-white/15 bg-ink-2 px-3 py-2.5 text-white placeholder-white/30 focus:border-sky-2" placeholder="Cabling, racks, drops, square footage, timeline"></textarea></label>
-          <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-sky px-6 py-3 text-sm font-semibold text-white hover:bg-brand-600 transition">
-            Send request
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-          <p id="formNote" hidden class="text-sm text-sky-2">Thanks, we&rsquo;ll be in touch. For anything urgent, call <a class="underline" href="tel:+19493342852">949.334.2852</a>.</p>
-        </form>
+        <div class="reveal rounded-2xl bg-white p-2 sm:p-3 overflow-hidden shadow-lg shadow-black/20">
+          <iframe
+            src="https://api.leadconnectorhq.com/widget/form/ptRUSKCwFxHLv4Zc1Qun"
+            style="width:100%;height:1134px;border:none;border-radius:3px"
+            id="inline-ptRUSKCwFxHLv4Zc1Qun"
+            data-layout="{'id':'INLINE'}"
+            data-trigger-type="alwaysShow"
+            data-trigger-value=""
+            data-activation-type="alwaysActivated"
+            data-activation-value=""
+            data-deactivation-type="neverDeactivate"
+            data-deactivation-value=""
+            data-form-name="JDP Communications Website"
+            data-height="1134"
+            data-layout-iframe-id="inline-ptRUSKCwFxHLv4Zc1Qun"
+            data-form-id="ptRUSKCwFxHLv4Zc1Qun"
+            title="JDP Communications Website">
+          </iframe>
+        </div>
       </div>
     </section>
   </main>
@@ -587,7 +592,7 @@
     <div class="mx-auto max-w-content px-5 sm:px-8 py-14">
       <div class="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <img src="assets/jdp-logo.svg" alt="JDP Communications" class="h-12 w-auto" onerror="if(this.src.indexOf('jdp-logo.svg')>-1){this.src='assets/jdp-logo.png'}else{this.style.display='none';this.nextElementSibling.style.display='block'}" />
+          <img src="assets/jdp-logo.png" alt="JDP Communications" class="h-12 w-auto" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
           <svg class="h-12 w-auto" style="display:none" viewBox="0 0 236 152" role="img" aria-label="jdp Communications"><use href="#jdpLogo"/></svg>
           <p class="mt-4 max-w-xs text-sm">Network Infrastructure Cabling Solutions. Voice, data, and video for businesses of all sizes.</p>
           <a href="tel:+19493342852" class="mt-4 inline-block font-display text-xl text-white hover:text-sky-2 transition">949.334.2852</a>
@@ -626,16 +631,8 @@
         root.style.setProperty("--plugX", (-180 * (1 - easeOutBack(plug))).toFixed(2));
       }
 
-      // Use the real hero photo for the pinned feature if it exists
-      if (feature) {
-        var probe = new Image();
-        probe.onload = function () {
-          feature.classList.add("has-photo");
-          var ph = feature.querySelector(".feat-photo");
-          if (ph) ph.style.backgroundImage = "url('assets/hero-rj45.jpg')";
-        };
-        probe.src = "assets/hero-rj45.jpg";
-      }
+      // The pinned feature always shows the animated RJ45 -> server scene
+      // (the real hero photo is used only in the above-fold hero, not here).
 
       var mb = document.getElementById("menuBtn"), mp = document.getElementById("mobilePanel");
       if (mb && mp) {
@@ -680,5 +677,6 @@
       }
     })();
   </script>
+  <script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 </html>
