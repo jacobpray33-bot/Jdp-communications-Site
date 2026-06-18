@@ -97,6 +97,25 @@
       mask-composite: exclude;
       pointer-events: none;
     }
+
+    /* ===== DataFlow: cable → server blue energy animation ===== */
+    @keyframes df-flow { to { stroke-dashoffset: -192; } }
+    @keyframes df-led { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+    @keyframes df-impact {
+      0% { opacity: 0.85; transform: scale(0.5); }
+      70%, 100% { opacity: 0; transform: scale(2); }
+    }
+    /* -192 is a whole multiple of both dash periods (24 and 64) → seamless loop */
+    .df-flow-1 { stroke-dasharray: 10 14; animation: df-flow 1.4s linear infinite; }
+    .df-flow-2 { stroke-dasharray: 8 56; animation: df-flow 1s linear infinite; }
+    .df-led { animation: df-led 1.6s ease-in-out infinite; }
+    .df-impact { transform-box: fill-box; transform-origin: center; animation: df-impact 2s ease-out infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      .df-flow-1, .df-flow-2, .df-led, .df-impact { animation: none !important; }
+      .df-flow-2 { stroke-dasharray: none !important; }
+      .df-led { opacity: 0.85 !important; }
+      .df-impact { opacity: 0 !important; }
+    }
   </style>
 
   <!-- React + ReactDOM + Babel + Framer Motion (CDN, pinned) -->
@@ -106,6 +125,31 @@
   <script src="https://unpkg.com/framer-motion@11.11.17/dist/framer-motion.js"></script>
   <script>
     window.Motion = window.FramerMotion || window.Motion || window.motion;
+    // Guard: if framer-motion fails to load (CDN error, blocked request, or a
+    // missing/renamed UMD global), degrade to a static fallback instead of a
+    // blank page. React is loaded synchronously above, so it is available here.
+    if (!window.Motion || !window.Motion.motion) {
+      (function () {
+        var FM_PROPS = {
+          initial: 1, animate: 1, exit: 1, transition: 1, variants: 1,
+          whileInView: 1, whileHover: 1, whileTap: 1, whileFocus: 1,
+          whileDrag: 1, viewport: 1, layout: 1, layoutId: 1, drag: 1,
+          dragConstraints: 1, onAnimationComplete: 1, onAnimationStart: 1,
+        };
+        var makeTag = function (tag) {
+          return React.forwardRef(function (props, ref) {
+            var clean = {};
+            for (var k in props) if (!FM_PROPS[k]) clean[k] = props[k];
+            clean.ref = ref;
+            return React.createElement(tag, clean);
+          });
+        };
+        window.Motion = {
+          motion: new Proxy({}, { get: function (_t, tag) { return makeTag(tag); } }),
+        };
+        console.warn("framer-motion unavailable — rendering static fallback.");
+      })();
+    }
     // Suppress benign Framer Motion / React list-key dev warnings.
     (function () {
       var _err = console.error;
@@ -578,13 +622,171 @@
     window.Capabilities = Capabilities;
   </script>
 
+  <!-- ===================== DataFlow ===================== -->
+  <script type="text/babel">
+    function DataFlow() {
+      const motion = window.Motion.motion;
+      const { BlurText } = window;
+
+      // Shared centerline: cable enters from the left and curves into the
+      // server's RJ45 port at (758, 300). Both the cable and the blue energy
+      // streams are drawn along this exact path.
+      const CABLE = "M 20 384 C 230 384 330 312 540 304 C 660 299 700 300 758 300";
+
+      const entrance = (delay) => ({
+        initial: { filter: "blur(10px)", opacity: 0, y: 20 },
+        animate: { filter: "blur(0px)", opacity: 1, y: 0 },
+        transition: { duration: 0.6, ease: "easeOut", delay },
+      });
+
+      return (
+        <section className="relative min-h-screen w-full overflow-hidden bg-black">
+          <div className="relative z-10 px-8 md:px-16 lg:px-20 pt-24 pb-12 flex flex-col items-center text-center min-h-screen">
+            <div className="text-sm font-body text-white/80 mb-6 self-start">// Data Flow</div>
+
+            <BlurText
+              text="Energy and data, end to end"
+              className="font-heading italic text-white text-5xl md:text-6xl lg:text-[5rem] leading-[0.85] tracking-[-3px] max-w-3xl justify-center"
+            />
+
+            <motion.p
+              {...entrance(0.4)}
+              className="mt-5 text-sm md:text-base text-white/90 max-w-2xl font-body font-light leading-snug"
+            >
+              From the connector to the rack, every Cat6 and fiber run we install carries
+              clean signal and power without a hiccup&mdash;shown here as live data streaming
+              straight into your servers.
+            </motion.p>
+
+            <motion.div {...entrance(0.6)} className="w-full flex-1 flex items-center justify-center mt-6">
+              <svg
+                viewBox="0 0 1200 600"
+                className="w-full max-w-5xl h-auto"
+                role="img"
+                aria-label="An Ethernet cable plugged into a server rack with blue energy and data flowing through the cable into the servers"
+              >
+                <defs>
+                  <radialGradient id="df-ambient" cx="0.74" cy="0.5" r="0.55">
+                    <stop offset="0%" stopColor="#2563eb" stopOpacity="0.38" />
+                    <stop offset="55%" stopColor="#2563eb" stopOpacity="0.07" />
+                    <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
+                  </radialGradient>
+                  <linearGradient id="df-energy" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stopColor="#1e40af" />
+                    <stop offset="40%" stopColor="#3b82f6" />
+                    <stop offset="75%" stopColor="#60a5fa" />
+                    <stop offset="100%" stopColor="#bfdbfe" />
+                  </linearGradient>
+                  <linearGradient id="df-cable" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#f3f5f9" />
+                    <stop offset="48%" stopColor="#d6dce5" />
+                    <stop offset="56%" stopColor="#c4ccd8" />
+                    <stop offset="100%" stopColor="#959eae" />
+                  </linearGradient>
+                  <linearGradient id="df-rack" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#141d2e" />
+                    <stop offset="100%" stopColor="#090d15" />
+                  </linearGradient>
+                  <linearGradient id="df-blade" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#1c2638" />
+                    <stop offset="100%" stopColor="#101723" />
+                  </linearGradient>
+                  <linearGradient id="df-led-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#dbeafe" />
+                    <stop offset="100%" stopColor="#3b82f6" />
+                  </linearGradient>
+                  <filter id="df-glow" x="-60%" y="-60%" width="220%" height="220%">
+                    <feGaussianBlur stdDeviation="3.5" result="b" />
+                    <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                  </filter>
+                  <filter id="df-glow-strong" x="-80%" y="-80%" width="260%" height="260%">
+                    <feGaussianBlur stdDeviation="7" result="b" />
+                    <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+                  </filter>
+                </defs>
+
+                {/* ambient blue glow behind the rack */}
+                <rect x="0" y="0" width="1200" height="600" fill="url(#df-ambient)" />
+
+                {/* server rack */}
+                <g>
+                  <rect x="762" y="96" width="332" height="408" rx="16" fill="url(#df-rack)" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" />
+                  <rect x="762" y="96" width="332" height="34" rx="16" fill="rgba(255,255,255,0.03)" />
+                  {[0, 1, 2, 3, 4].map((i) => {
+                    const by = 142 + i * 70;
+                    return (
+                      <g key={i}>
+                        <rect x="784" y={by} width="290" height="58" rx="8" fill="url(#df-blade)" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+                        <rect x="800" y={by + 16} width="120" height="6" rx="3" fill="rgba(255,255,255,0.07)" />
+                        <rect x="800" y={by + 30} width="80" height="6" rx="3" fill="rgba(255,255,255,0.05)" />
+                        <circle cx="952" cy={by + 29} r="4" fill="rgba(255,255,255,0.12)" />
+                        <rect
+                          className="df-led"
+                          style={{ animationDelay: `${i * 0.22}s` }}
+                          x="1034"
+                          y={by + 24}
+                          width="22"
+                          height="10"
+                          rx="4"
+                          fill="url(#df-led-grad)"
+                          filter="url(#df-glow)"
+                        />
+                      </g>
+                    );
+                  })}
+                  {/* RJ45 port on the rack face */}
+                  <rect x="754" y="288" width="14" height="24" rx="2" fill="#070a10" stroke="rgba(96,165,250,0.5)" strokeWidth="1" />
+                </g>
+
+                {/* cable body (drawn under the energy) */}
+                <path d={CABLE} fill="none" stroke="#05070b" strokeWidth="26" strokeLinecap="round" />
+                <path d={CABLE} fill="none" stroke="url(#df-cable)" strokeWidth="20" strokeLinecap="round" />
+
+                {/* blue energy flowing along the cable into the server */}
+                <path d={CABLE} fill="none" stroke="url(#df-energy)" strokeWidth="14" strokeLinecap="round" opacity="0.18" filter="url(#df-glow-strong)" />
+                <path className="df-flow-1" d={CABLE} fill="none" stroke="url(#df-energy)" strokeWidth="5" strokeLinecap="round" filter="url(#df-glow)" />
+                <path className="df-flow-2" d={CABLE} fill="none" stroke="#dbeafe" strokeWidth="3.2" strokeLinecap="round" filter="url(#df-glow-strong)" />
+
+                {/* RJ45 connector at the cable end */}
+                <g>
+                  <rect x="724" y="279" width="14" height="7" rx="2" fill="url(#df-cable)" stroke="rgba(0,0,0,0.3)" strokeWidth="0.75" />
+                  <rect x="704" y="285" width="54" height="30" rx="3" fill="url(#df-cable)" stroke="rgba(0,0,0,0.35)" strokeWidth="1" />
+                  {[0, 1, 2, 3, 4, 5].map((j) => (
+                    <line key={j} x1={712 + j * 8} y1="288" x2={712 + j * 8} y2="299" stroke="#d9a441" strokeWidth="2" strokeLinecap="round" />
+                  ))}
+                </g>
+
+                {/* energy entering the server */}
+                <circle cx="763" cy="300" r="6" fill="#dbeafe" filter="url(#df-glow-strong)" />
+                <circle className="df-impact" cx="763" cy="300" r="11" fill="none" stroke="#93c5fd" strokeWidth="3" filter="url(#df-glow-strong)" />
+              </svg>
+            </motion.div>
+
+            <motion.div {...entrance(0.85)} className="mt-6">
+              <span className="liquid-glass rounded-full px-4 py-1.5 text-xs font-body text-white/90 inline-flex items-center gap-2">
+                <span
+                  className="inline-block w-2 h-2 rounded-full"
+                  style={{ background: "#60a5fa", boxShadow: "0 0 8px 2px rgba(96,165,250,0.8)" }}
+                />
+                Blue = live data &amp; power
+              </span>
+            </motion.div>
+          </div>
+        </section>
+      );
+    }
+
+    window.DataFlow = DataFlow;
+  </script>
+
   <!-- ===================== App + mount ===================== -->
   <script type="text/babel">
     function App() {
-      const { Hero, Capabilities } = window;
+      const { Hero, DataFlow, Capabilities } = window;
       return (
         <React.Fragment>
           <Hero />
+          <DataFlow />
           <Capabilities />
         </React.Fragment>
       );
